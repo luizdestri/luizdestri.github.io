@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Prints & All Types | Luiz Destri</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="../style.css">
+
+
+    <style>
+
+        /* ==========================================
+           PROJETO 08 — PRINTS & ALL TYPES
+        ========================================== */
+
+        :root {
+            --header-height: 84px;
+            --sidebar-width: 340px;
+
+            --page-left: 18px;
+            --page-right: 18px;
+
+            --gallery-gap: 10px;
+            --campaign-gap: 28px;
+
+            --media-radius: 6px;
+        }
+
+
+        /* ==========================================
+           ESTRUTURA GERAL
+        ========================================== */
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+
+        header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: var(--header-height);
+
+            z-index: 100;
+
+            background: var(--background);
+        }
+
+
+        .project-layout {
+            position: fixed;
+
+            top: var(--header-height);
+            left: 0;
+
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+        }
+
+
+        /* ==========================================
+           SIDEBAR
+        ========================================== */
+
+        .project-sidebar {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: var(--sidebar-width);
+            height: 100%;
+
+            padding-left: var(--page-left);
+
+            display: flex;
+            flex-direction: column;
+
+            background: var(--background);
+        }
+
+
+        .project-intro {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+
+            padding-right: 18px;
+        }
+
+
+        .project-intro p {
+            margin: 0;
+
+            width: 100%;
+
+            font-size: 11px;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+
+        /* ==========================================
+           ÁREA ROLÁVEL
+        ========================================== */
+
+        .project-scroll {
+            position: absolute;
+
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding-right: var(--page-right);
+            padding-bottom: 30px;
+
+            scrollbar-width: thin;
+            scrollbar-color: #999 transparent;
+        }
+
+
+        .project-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+
+        .project-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 10px;
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+
+        /* ==========================================
+           GALERIA
+        ========================================== */
+
+        .project-gallery {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* ==========================================
+           CAMPANHAS
+        ========================================== */
+
+        .campaign {
+            width: 100%;
+
+            margin: 0 0 var(--campaign-gap);
+
+            padding: 0 0 var(--campaign-gap);
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+        }
+
+
+        .campaign:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+
+        .campaign:nth-last-child(2) {
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+        }
+
+
+        /* ==========================================
+           CABEÇALHO DA CAMPANHA
+        ========================================== */
+
+        .campaign-header {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 4px;
+
+            margin: 0 0 10px;
+        }
+
+
+        .campaign-title {
+            margin: 0;
+
+            font-size: 12px;
+            line-height: 1.2;
+            font-weight: 500;
+        }
+
+
+        .campaign-description {
+            margin: 0;
+
+            max-width: 820px;
+
+            font-size: 11px;
+            line-height: 1.45;
+            font-weight: 400;
+        }
+
+
+        /* ==========================================
+           CONTEÚDO DA CAMPANHA
+        ========================================== */
+
+        .campaign-content {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: var(--gallery-gap);
+        }
+
+
+        /* ==========================================
+           LINHAS DE PEÇAS
+        ========================================== */
+
+        .campaign-row {
+            width: 100%;
+
+            display: grid;
+
+            gap: var(--gallery-gap);
+        }
+
+
+        .campaign-row.single {
+            grid-template-columns: 1fr;
+        }
+
+
+        .campaign-row.two {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+
+        .campaign-row.three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+
+        /* ==========================================
+           IMAGENS
+        ========================================== */
+
+        .campaign-row img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: var(--media-radius);
+        }
+
+
+        /* ==========================================
+           HEADER
+        ========================================== */
+
+        .identity a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        nav a {
+            text-decoration: none;
+        }
+
+
+        /* ==========================================
+           CRÉDITOS
+        ========================================== */
+
+        .credits {
+            width: 100%;
+
+            margin: 0;
+
+            padding: 0 0 20px;
+
+            font-size: 11px;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+
+        .credits p {
+            margin: 0;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 700px) {
+
+            :root {
+                --header-height: 104px;
+
+                --sidebar-width: 100%;
+
+                --page-left: 16px;
+                --page-right: 16px;
+
+                --gallery-gap: 10px;
+                --campaign-gap: 24px;
+            }
+
+
+            html,
+            body {
+                overflow: auto;
+            }
+
+
+            header {
+                position: relative;
+                height: auto;
+            }
+
+
+            .project-layout {
+                position: relative;
+
+                top: auto;
+
+                height: auto;
+            }
+
+
+            .project-sidebar {
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                padding: 16px;
+            }
+
+
+            .project-intro {
+                padding: 0;
+            }
+
+
+            .project-intro p {
+                font-size: 12px;
+            }
+
+
+            .project-scroll {
+                position: relative;
+
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+
+                width: 100%;
+
+                overflow: visible;
+
+                padding: 0 16px 30px;
+            }
+
+
+            .campaign-header {
+                gap: 4px;
+
+                margin-bottom: 10px;
+            }
+
+
+            .campaign-title {
+                font-size: 12px;
+            }
+
+
+            .campaign-description {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+
+            .campaign-row.two,
+            .campaign-row.three {
+                grid-template-columns: 1fr;
+            }
+
+
+            .campaign {
+                padding-bottom: var(--campaign-gap);
+                margin-bottom: var(--campaign-gap);
+            }
+
+
+            .campaign:last-child {
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+
+
+            .credits {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
+
+    <header>
+
+        <div class="topbar">
+
+            <div class="identity">
+
+                <a href="../index.html">
+                    Luiz Destri
+                </a>
+
+                <span>
+                    Associate Creative Director
+                </span>
+
+                <span>
+                    Copywriter
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    class="active"
+                    href="../index.html"
+                >
+                    Selected Work
+                </a>
+
+                <a href="../10-about/">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         PROJETO
+    ========================================== -->
+
+    <main class="project-layout">
+
+
+        <!-- ==========================================
+             SIDEBAR
+        ========================================== -->
+
+        <aside class="project-sidebar">
+
+            <section class="project-intro">
+
+                <p>
+                    Tem horas que só um título salva.<br>
+                    Tem horas que post é print.<br>
+                    Tem horas que é só ver, entender e reagir.
+                </p>
+
+            </section>
+
+        </aside>
+
+
+        <!-- ==========================================
+             GALERIA
+        ========================================== -->
+
+        <section class="project-scroll">
+
+            <div class="project-gallery">
+
+
+                <!-- ======================================
+                     01 — BRASILPREV
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            BRASILPREV
+                        </h2>
+
+                        <p class="campaign-description">
+                            Campanha nacional, destacando as modalidades de previdência do BB.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row single">
+
+                            <img
+                                src="01-brasilprev/brasilprev-01.jpg"
+                                alt="Brasilprev — peça 01"
+                            >
+
+                        </div>
+
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="01-brasilprev/brasilprev-02.jpg"
+                                alt="Brasilprev — peça 02"
+                            >
+
+                            <img
+                                src="01-brasilprev/brasilprev-03.jpg"
+                                alt="Brasilprev — peça 03"
+                            >
+
+                        </div>
+
+
+                        <div class="campaign-row three">
+
+                            <img
+                                src="01-brasilprev/brasilprev-04.jpg"
+                                alt="Brasilprev — peça 04"
+                            >
+
+                            <img
+                                src="01-brasilprev/brasilprev-05.jpg"
+                                alt="Brasilprev — peça 05"
+                            >
+
+                            <img
+                                src="01-brasilprev/brasilprev-06.jpg"
+                                alt="Brasilprev — peça 06"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     02 — SENAI EMPRESAS
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            SENAI EMPRESAS
+                        </h2>
+
+                        <p class="campaign-description">
+                            Mais do que educação profissional, suporte para empresas de todos os tamanhos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="02-senai-empresas/senai-empresas-01.jpg"
+                                alt="SENAI Empresas — peça 01"
+                            >
+
+                            <img
+                                src="02-senai-empresas/senai-empresas-02.jpg"
+                                alt="SENAI Empresas — peça 02"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     03 — LUMEN FM
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            LUMEN FM
+                        </h2>
+
+                        <p class="campaign-description">
+                            A rádio com a programação mais eclética de Curitiba reunia de tudo um pouco.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row single">
+
+                            <img
+                                src="03-lumen-fm/lumen-fm-01.jpg"
+                                alt="Lumen FM — peça 01"
+                            >
+
+                        </div>
+
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="03-lumen-fm/lumen-fm-02.jpg"
+                                alt="Lumen FM — peça 02"
+                            >
+
+                            <img
+                                src="03-lumen-fm/lumen-fm-03.jpg"
+                                alt="Lumen FM — peça 03"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     04 — GAZETA DO POVO
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            CADERNO POLÍTICA - GAZETA DO POVO
+                        </h2>
+
+                        <p class="campaign-description">
+                            Todo dia, uma notícia para lembrar a população de quem eles colocaram no poder.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="04-gazeta-do-povo/gazeta-politica-01.jpg"
+                                alt="Gazeta do Povo — Caderno Política — peça 01"
+                            >
+
+                            <img
+                                src="04-gazeta-do-povo/gazeta-politica-02.jpg"
+                                alt="Gazeta do Povo — Caderno Política — peça 02"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     05 — CRENVI
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            CRENVI - ONG
+                        </h2>
+
+                        <p class="campaign-description">
+                            O vício não afeta só o usuário, afeta todos ao seu redor.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row single">
+
+                            <img
+                                src="05-crenvi/crenvi-01.jpg"
+                                alt="CRENVI — peça 01"
+                            >
+
+                        </div>
+
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="05-crenvi/crenvi-02.jpg"
+                                alt="CRENVI — peça 02"
+                            >
+
+                            <img
+                                src="05-crenvi/crenvi-03.jpg"
+                                alt="CRENVI — peça 03"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     06 — FIAT
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            FIAT
+                        </h2>
+
+                        <p class="campaign-description">
+                            O lançamento automático mais potente do ano.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row single">
+
+                            <img
+                                src="06-fiat/fiat-01.jpg"
+                                alt="FIAT — peça 01"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     07 — PREFEITURA DE CURITIBA
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            PREFEITURA DE CURITIBA
+                        </h2>
+
+                        <p class="campaign-description">
+                            Uma campanha para lembrar o óbvio: idoso em casa precisa de atenção redobrada sempre.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row single">
+
+                            <img
+                                src="07-prefeitura/prefeitura-quedas-01.jpg"
+                                alt="Prefeitura de Curitiba — peça 01"
+                            >
+
+                        </div>
+
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="07-prefeitura/prefeitura-quedas-02.jpg"
+                                alt="Prefeitura de Curitiba — peça 02"
+                            >
+
+                            <img
+                                src="07-prefeitura/prefeitura-quedas-03.jpg"
+                                alt="Prefeitura de Curitiba — peça 03"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     08 — CORITIBA FOOTBALL CLUB
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            CORITIBA FOOTBALL CLUB
+                        </h2>
+
+                        <p class="campaign-description">
+                            Campanha para lembrar o maior benefício do sócio-torcedor: empurrar o time em casa.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row two">
+
+                            <img
+                                src="08-coritiba-football-club/coritiba-football-club-01.jpg"
+                                alt="Coritiba Football Club — peça 01"
+                            >
+
+                            <img
+                                src="08-coritiba-football-club/coritiba-football-club-02.jpg"
+                                alt="Coritiba Football Club — peça 02"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     09 — PROCORRER
+                ======================================= -->
+
+                <section class="campaign">
+
+                    <div class="campaign-header">
+
+                        <h2 class="campaign-title">
+                            PROCORRER
+                        </h2>
+
+                        <p class="campaign-description">
+                            A loja dos tênis esportivos lembrando que, apesar do que muitos pensam, o sucesso começa nos pés.
+                        </p>
+
+                    </div>
+
+
+                    <div class="campaign-content">
+
+                        <div class="campaign-row three">
+
+                            <img
+                                src="09-procorrer/procorrer-01.jpg"
+                                alt="ProCorrer — peça 01"
+                            >
+
+                            <img
+                                src="09-procorrer/procorrer-02.jpg"
+                                alt="ProCorrer — peça 02"
+                            >
+
+                            <img
+                                src="09-procorrer/procorrer-03.jpg"
+                                alt="ProCorrer — peça 03"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     CRÉDITOS
+                ======================================= -->
+
+                <section class="credits">
+
+                    <p>
+                        Associate Creative Director / Copywriter
+                    </p>
+
+                    <p>
+                        Clientes variados
+                    </p>
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

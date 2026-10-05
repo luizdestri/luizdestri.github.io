@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Creamy | Luiz Destri</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="../style.css">
+
+
+    <style>
+
+        /* ==========================================
+           CREAMY
+        ========================================== */
+
+        :root {
+
+            --header-height: 84px;
+
+            --sidebar-width: 340px;
+
+            --page-left: 18px;
+            --page-right: 18px;
+
+            --gallery-gap: 18px;
+
+            --media-radius: 6px;
+
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+        }
+
+
+        /* ==========================================
+           HEADER FIXO
+        ========================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: var(--header-height);
+
+            z-index: 100;
+
+            background: var(--background);
+
+        }
+
+
+        /* ==========================================
+           ESTRUTURA DO PROJETO
+        ========================================== */
+
+        .project-layout {
+
+            position: fixed;
+
+            top: var(--header-height);
+            left: 0;
+
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+
+        }
+
+
+        /* ==========================================
+           COLUNA ESQUERDA FIXA
+        ========================================== */
+
+        .project-sidebar {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: var(--sidebar-width);
+            height: 100%;
+
+            padding-left: var(--page-left);
+
+            display: flex;
+            flex-direction: column;
+
+            background: var(--background);
+
+        }
+
+
+        /* ==========================================
+           TEXTO LATERAL
+        ========================================== */
+
+        .project-intro {
+
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+
+            padding-right: 18px;
+
+        }
+
+
+        .project-intro p {
+
+            margin: 0;
+
+            width: 100%;
+
+            font-size: 12px;
+            line-height: 1.65;
+            font-weight: 400;
+
+        }
+
+
+        /* ==========================================
+           ÁREA ROLÁVEL
+        ========================================== */
+
+        .project-scroll {
+
+            position: absolute;
+
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding-right: var(--page-right);
+            padding-bottom: 40px;
+
+            scrollbar-width: thin;
+            scrollbar-color: #999 transparent;
+
+        }
+
+
+        /* ==========================================
+           SCROLLBAR
+        ========================================== */
+
+        .project-scroll::-webkit-scrollbar {
+
+            width: 8px;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb {
+
+            background: #999;
+
+            border-radius: 10px;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb:hover {
+
+            background: #777;
+
+        }
+
+
+        /* ==========================================
+           GALERIA
+        ========================================== */
+
+        .project-gallery {
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: var(--gallery-gap);
+
+        }
+
+
+        .project-gallery > * {
+
+            width: 100%;
+
+            margin: 0;
+
+            flex: none;
+
+        }
+
+
+        /* ==========================================
+           SEPARADORES
+        ========================================== */
+
+        .chapter-divider {
+
+            height: 1px;
+
+            background: rgba(0, 0, 0, 0.22);
+
+        }
+
+
+        /* ==========================================
+           TÍTULOS DAS CAMPANHAS
+        ========================================== */
+
+        .campaign-label {
+
+            font-size: 14px;
+
+            line-height: 1.2;
+
+            font-weight: 500;
+
+        }
+
+
+        .campaign-label p {
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           HERO
+        ========================================== */
+
+        .hero {
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            overflow: hidden;
+
+            border-radius: var(--media-radius);
+
+            background: var(--background);
+
+        }
+
+
+        .hero img {
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: var(--media-radius);
+
+            /*
+               Faz o branco da imagem se integrar
+               ao fundo off-white da página.
+            */
+
+            mix-blend-mode: multiply;
+
+        }
+
+
+        /* ==========================================
+           VÍDEOS
+        ========================================== */
+
+        .video {
+
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            overflow: hidden;
+
+            border-radius: var(--media-radius);
+
+            background: #000;
+
+        }
+
+
+        .video iframe {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+
+        }
+
+
+        /* ==========================================
+           IMAGENS
+        ========================================== */
+
+        .media-image {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        /* ==========================================
+           GRIDS DE IMAGENS
+        ========================================== */
+
+        .image-grid {
+
+            display: grid;
+
+            gap: var(--gallery-gap);
+
+            width: 100%;
+
+        }
+
+
+        .image-grid.two {
+
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+
+
+        .image-grid.three {
+
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+
+
+        .image-grid.four {
+
+            grid-template-columns: repeat(4, 1fr);
+
+        }
+
+
+        .image-grid img {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        /* ==========================================
+           CASEBOARD
+        ========================================== */
+
+        .caseboard img {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        /* ==========================================
+           POTINHO — FULL WIDTH
+        ========================================== */
+
+        .snow-globe-feature img {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        /* ==========================================
+           SOUNDBRANDING
+        ========================================== */
+
+        .audio-section {
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .audio-section .campaign-label {
+
+            text-align: center;
+
+        }
+
+
+        .audio-player {
+
+            width: min(520px, 100%);
+
+            min-height: 58px;
+
+            box-sizing: border-box;
+
+            border: 1px solid rgba(0, 0, 0, 0.22);
+
+            border-radius: var(--media-radius);
+
+            padding: 0 16px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 14px;
+
+            background: var(--background);
+
+        }
+
+
+        .audio-play {
+
+            width: 28px;
+            height: 28px;
+
+            flex: 0 0 28px;
+
+            border: 1px solid rgba(0, 0, 0, 0.5);
+
+            border-radius: 50%;
+
+            background: transparent;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0;
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-play::before {
+
+            content: "";
+
+            width: 0;
+            height: 0;
+
+            margin-left: 2px;
+
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+
+            border-left: 7px solid #000;
+
+        }
+
+
+        .audio-play.playing::before {
+
+            width: 8px;
+            height: 10px;
+
+            margin-left: 0;
+
+            border: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #000 0 3px,
+                    transparent 3px 5px,
+                    #000 5px 8px
+                );
+
+        }
+
+
+        .audio-progress {
+
+            flex: 1;
+
+            min-width: 0;
+
+            appearance: none;
+
+            height: 2px;
+
+            background: rgba(0, 0, 0, 0.18);
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-progress::-webkit-slider-thumb {
+
+            appearance: none;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #000;
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-progress::-moz-range-thumb {
+
+            width: 9px;
+            height: 9px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: #000;
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-time {
+
+            width: 42px;
+
+            font-size: 11px;
+
+            line-height: 1;
+
+            text-align: right;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* ==========================================
+           CRÉDITOS
+        ========================================== */
+
+        .credits {
+
+            width: 100%;
+
+            margin: 0;
+
+            padding: 0 0 20px;
+
+            font-size: 11px;
+
+            line-height: 1.65;
+
+            font-weight: 400;
+
+        }
+
+
+        .credits p {
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media(max-width:700px) {
+
+            :root {
+
+                --header-height: 104px;
+
+                --sidebar-width: 100%;
+
+                --page-left: 16px;
+                --page-right: 16px;
+
+                --gallery-gap: 14px;
+
+            }
+
+
+            html,
+            body {
+
+                overflow: auto;
+
+            }
+
+
+            header {
+
+                position: relative;
+
+                height: auto;
+
+            }
+
+
+            .project-layout {
+
+                position: relative;
+
+                top: auto;
+
+                height: auto;
+
+            }
+
+
+            .project-sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+
+                padding: 16px;
+
+            }
+
+
+            .project-intro {
+
+                padding: 0;
+
+            }
+
+
+            .project-scroll {
+
+                position: relative;
+
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+
+                width: 100%;
+
+                overflow: visible;
+
+                padding: 0 16px 30px;
+
+            }
+
+
+            .image-grid.four,
+            .image-grid.three,
+            .image-grid.two {
+
+                grid-template-columns: 1fr;
+
+                gap: var(--gallery-gap);
+
+            }
+
+
+            .project-intro p,
+            .credits {
+
+                font-size: 12px;
+
+            }
+
+
+            .campaign-label {
+
+                font-size: 13px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
+
+    <header>
+
+        <div class="topbar">
+
+            <div class="identity">
+
+                <a href="../index.html">
+                    Luiz Destri
+                </a>
+
+                <span>
+                    Associate Creative Director
+                </span>
+
+                <span>
+                    Copywriter
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    class="active"
+                    href="../index.html"
+                >
+                    Selected Work
+                </a>
+
+                <a href="../10-about/">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         PROJECT
+    ========================================== -->
+
+    <main class="project-layout">
+
+
+        <!-- ======================================
+             COLUNA FIXA
+        ======================================= -->
+
+        <aside class="project-sidebar">
+
+            <section class="project-intro">
+
+                <p>
+                    Skincare não precisa ser sempre pessoas felizes lavando o rosto e aplicando o produto. Skincare também pode ser manias da nossa cultura, humor, apelidinhos carinhosos, referências do cinema e muito mais. Afinal de contas, a marca que democratizou o skincare no Brasil não pode repetir fórmulas do segmento. Pelo contrário, ela deve quebrar padrões também na comunicação. Isso é ser "Creamy de la Creamy".
+                </p>
+
+            </section>
+
+        </aside>
+
+
+        <!-- ======================================
+             GALERIA
+        ======================================= -->
+
+        <section class="project-scroll">
+
+            <div class="project-gallery">
+
+
+                <!-- ======================================
+                     HERO — CREAMY DE LA CREAMY
+                ======================================= -->
+
+                <section class="hero">
+
+                    <img
+                        src="01-conceito/hero.jpg"
+                        alt="Isso é Creamy de la Creamy"
+                    >
+
+                </section>
+
+
+                <!-- ======================================
+                     SOUNDBRANDING
+                ======================================= -->
+
+                <section class="audio-section">
+
+                    <div class="campaign-label">
+
+                        <p>
+                            Sound branding
+                        </p>
+
+                    </div>
+
+
+                    <div class="audio-player">
+
+                        <button
+                            class="audio-play"
+                            type="button"
+                            aria-label="Play soundbranding"
+                        ></button>
+
+
+                        <input
+                            class="audio-progress"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="0"
+                            step="0.1"
+                            aria-label="Progresso do áudio"
+                        >
+
+
+                        <span class="audio-time">
+                            0:00
+                        </span>
+
+
+                        <audio
+                            id="soundbranding"
+                            preload="metadata"
+                            src="01-conceito/soundbranding.mp3"
+                        ></audio>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     DIA DAS MÃES
+                ======================================= -->
+
+                <section class="campaign-label">
+
+                    <p>
+                        Dia das Mães
+                    </p>
+
+                </section>
+
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1100695986"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+
+                </section>
+
+
+                <!-- ======================================
+                     SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     DIA DOS NAMORADOS
+                ======================================= -->
+
+                <section class="campaign-label">
+
+                    <p>
+                        Dia dos Namorados
+                    </p>
+
+                </section>
+
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1100702425"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+
+                </section>
+
+
+                <div class="image-grid four">
+
+                    <img
+                        src="03-dia-dos-namorados/poster-01.jpg"
+                        alt="Dia dos Namorados — Poster 01"
+                    >
+
+                    <img
+                        src="03-dia-dos-namorados/poster-02.jpg"
+                        alt="Dia dos Namorados — Poster 02"
+                    >
+
+                    <img
+                        src="03-dia-dos-namorados/poster-03.jpg"
+                        alt="Dia dos Namorados — Poster 03"
+                    >
+
+                    <img
+                        src="03-dia-dos-namorados/poster-04.jpg"
+                        alt="Dia dos Namorados — Poster 04"
+                    >
+
+                </div>
+
+
+                <div class="caseboard">
+
+                    <img
+                        src="03-dia-dos-namorados/caseboard.jpg"
+                        alt="Caseboard — Dia dos Namorados"
+                    >
+
+                </div>
+
+
+                <!-- ======================================
+                     SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     DIA DOS PAIS
+                ======================================= -->
+
+                <section class="campaign-label">
+
+                    <p>
+                        Dia dos Pais
+                    </p>
+
+                </section>
+
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1100699380"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+
+                </section>
+
+
+                <div class="media-image">
+
+                    <img
+                        src="04-dia-dos-pais/creamybar-board.jpg"
+                        alt="Creamy Bar"
+                        style="display:block;width:100%;height:auto;border-radius:var(--media-radius);"
+                    >
+
+                </div>
+
+
+                <!-- ======================================
+                     SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     NATAL
+                ======================================= -->
+
+                <section class="campaign-label">
+
+                    <p>
+                        Natal
+                    </p>
+
+                </section>
+
+
+                <!-- MERRY CREAMY -->
+
+                <img
+                    class="media-image"
+                    src="05-natal/merry-creamy.jpg"
+                    alt="Merry Creamy"
+                >
+
+
+                <!-- ESQUECERAM DE MIM -->
+
+                <div class="image-grid two">
+
+                    <img
+                        src="05-natal/esqueceram-de-mim-01.jpg"
+                        alt="Esqueceram de Mim — 01"
+                    >
+
+                    <img
+                        src="05-natal/esqueceram-de-mim-02.jpg"
+                        alt="Esqueceram de Mim — 02"
+                    >
+
+                </div>
+
+
+                <!-- POTINHO DE NEVE — FULL WIDTH -->
+
+                <div class="snow-globe-feature">
+
+                    <img
+                        src="05-natal/potinho-de-neve-01.jpg"
+                        alt="Potinho de neve Creamy"
+                    >
+
+                </div>
+
+
+                <!-- DOIS POTINHOS -->
+
+                <div class="image-grid two">
+
+                    <img
+                        src="05-natal/potinho-de-neve-02.jpg"
+                        alt="Potinho de neve Creamy — 01"
+                    >
+
+                    <img
+                        src="05-natal/potinho-de-neve-03.jpg"
+                        alt="Potinho de neve Creamy — 02"
+                    >
+
+                </div>
+
+
+                <!-- ======================================
+                     SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     ORGULHO LGBTQI+
+                ======================================= -->
+
+                <section class="campaign-label">
+
+                    <p>
+                        Orgulho LGBTQI+
+                    </p>
+
+                </section>
+
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1100695385"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+
+                </section>
+
+
+                <!-- ======================================
+                     SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     VALENTINE'S DAY
+                ======================================= -->
+
+                <section class="campaign-label">
+
+                    <p>
+                        Valentine's Day
+                    </p>
+
+                </section>
+
+
+                <div class="image-grid two">
+
+                    <img
+                        src="07-valentines/poster-valentines-01.jpg"
+                        alt="Valentine's Day — 01"
+                    >
+
+                    <img
+                        src="07-valentines/poster-valentines-02.jpg"
+                        alt="Valentine's Day — 02"
+                    >
+
+                </div>
+
+
+                <!-- ======================================
+                     SEPARADOR FINAL
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     CRÉDITOS
+                ======================================= -->
+
+                <section class="credits">
+
+                    <p>
+                        Santiago Comunicação<br>
+                        Creamy Skincare<br>
+                        Associate Creative Director / Copywriter
+                    </p>
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         SOUNDBRANDING — SCRIPT
+    ========================================== -->
+
+    <script>
+
+        const audio =
+            document.getElementById("soundbranding");
+
+        const playButton =
+            document.querySelector(".audio-play");
+
+        const progress =
+            document.querySelector(".audio-progress");
+
+        const timeDisplay =
+            document.querySelector(".audio-time");
+
+
+        function formatTime(seconds) {
+
+            if (!isFinite(seconds)) {
+
+                return "0:00";
+
+            }
+
+            const minutes =
+                Math.floor(seconds / 60);
+
+            const secs =
+                Math.floor(seconds % 60);
+
+            return `${minutes}:${secs
+                .toString()
+                .padStart(2, "0")}`;
+
+        }
+
+
+        audio.addEventListener(
+            "loadedmetadata",
+            () => {
+
+                timeDisplay.textContent =
+                    formatTime(audio.duration);
+
+            }
+        );
+
+
+        audio.addEventListener(
+            "timeupdate",
+            () => {
+
+                if (!audio.duration) {
+
+                    return;
+
+                }
+
+
+                progress.value =
+                    (audio.currentTime /
+                    audio.duration) * 100;
+
+
+                timeDisplay.textContent =
+                    formatTime(audio.currentTime);
+
+            }
+        );
+
+
+        playButton.addEventListener(
+            "click",
+            () => {
+
+                if (audio.paused) {
+
+                    audio.play();
+
+                    playButton.classList.add(
+                        "playing"
+                    );
+
+                } else {
+
+                    audio.pause();
+
+                    playButton.classList.remove(
+                        "playing"
+                    );
+
+                }
+
+            }
+        );
+
+
+        audio.addEventListener(
+            "ended",
+            () => {
+
+                playButton.classList.remove(
+                    "playing"
+                );
+
+                progress.value = 0;
+
+                timeDisplay.textContent =
+                    formatTime(audio.duration);
+
+            }
+        );
+
+
+        progress.addEventListener(
+            "input",
+            () => {
+
+                if (!audio.duration) {
+
+                    return;
+
+                }
+
+
+                audio.currentTime =
+                    (progress.value / 100) *
+                    audio.duration;
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

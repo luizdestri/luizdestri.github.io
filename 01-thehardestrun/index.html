@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Hardest Run | Luiz Destri</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+
+        /* ==========================================
+           THE HARDEST RUN — PROJECT PAGE
+        ========================================== */
+
+        :root {
+
+            --header-height: 84px;
+
+            /* Não alterar */
+            --sidebar-width: 340px;
+
+            --page-left: 18px;
+            --page-right: 18px;
+
+            /* Espaçamento único entre TODOS os elementos */
+            --gallery-gap: 18px;
+
+            /* Arredondamento único para TODOS os elementos */
+            --media-radius: 6px;
+
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+        }
+
+
+        /* ==========================================
+           HEADER FIXO
+        ========================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: var(--header-height);
+
+            z-index: 100;
+
+            background: var(--background);
+
+        }
+
+
+        /* ==========================================
+           ESTRUTURA DO PROJETO
+        ========================================== */
+
+        .project-layout {
+
+            position: fixed;
+
+            top: var(--header-height);
+            left: 0;
+
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+
+        }
+
+
+        /* ==========================================
+           COLUNA ESQUERDA FIXA
+        ========================================== */
+
+        .project-sidebar {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: var(--sidebar-width);
+            height: 100%;
+
+            padding-left: var(--page-left);
+
+            display: flex;
+            flex-direction: column;
+
+            background: var(--background);
+
+        }
+
+
+        /* ==========================================
+           TEXTO
+        ========================================== */
+
+        .project-intro {
+
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+
+            padding-right: 18px;
+
+        }
+
+
+        .project-intro p {
+
+            margin: 0;
+
+            width: 100%;
+
+            font-size: 11px;
+            line-height: 1.65;
+            font-weight: 400;
+
+        }
+
+
+        /* ==========================================
+           ÁREA ROLÁVEL
+        ========================================== */
+
+        .project-scroll {
+
+            position: absolute;
+
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding-right: var(--page-right);
+            padding-bottom: 40px;
+
+            scrollbar-width: thin;
+            scrollbar-color: #999 transparent;
+
+        }
+
+
+        /* ==========================================
+           SCROLLBAR
+        ========================================== */
+
+        .project-scroll::-webkit-scrollbar {
+
+            width: 8px;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb {
+
+            background: #999;
+
+            border-radius: 10px;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb:hover {
+
+            background: #777;
+
+        }
+
+
+        /* ==========================================
+           GALERIA
+        ========================================== */
+
+        .project-gallery {
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: var(--gallery-gap);
+
+        }
+
+
+        /*
+           REGRA ÚNICA:
+           TODOS OS ELEMENTOS DA GALERIA
+           COMEÇAM E TERMINAM NO MESMO LUGAR.
+        */
+
+        .project-gallery > * {
+
+            width: 100%;
+
+            margin: 0;
+
+            flex: none;
+
+        }
+
+
+        /* ==========================================
+           PADRÃO ÚNICO PARA TODAS AS MÍDIAS
+        ========================================== */
+
+        .video,
+        .hero,
+        .board {
+
+            width: 100%;
+
+            margin: 0;
+
+            border-radius: var(--media-radius);
+
+            overflow: hidden;
+
+            position: relative;
+
+            display: block;
+
+            background: #000;
+
+        }
+
+
+        /* ==========================================
+           VÍDEOS
+        ========================================== */
+
+        .video {
+
+            aspect-ratio: 16 / 9;
+
+        }
+
+
+        .video iframe {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+
+        }
+
+
+        /* ==========================================
+           IMAGENS
+        ========================================== */
+
+        .hero img,
+        .board img {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           CRÉDITOS
+        ========================================== */
+
+       .credits {
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 20px 0 20px;
+
+    border-top: 1px solid #bcbcbc;
+
+    font-size: 11px;
+    line-height: 1.65;
+    font-weight: 400;
+
+}
+
+
+        .credits p {
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media(max-width:700px) {
+
+            :root {
+
+                --header-height: 104px;
+
+                --sidebar-width: 100%;
+
+                --page-left: 16px;
+                --page-right: 16px;
+
+                --gallery-gap: 14px;
+
+            }
+
+
+            html,
+            body {
+
+                overflow: auto;
+
+            }
+
+
+            header {
+
+                position: relative;
+
+                height: auto;
+
+            }
+
+
+            .project-layout {
+
+                position: relative;
+
+                top: auto;
+
+                height: auto;
+
+            }
+
+
+            .project-sidebar {
+
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                padding: 16px;
+
+            }
+
+
+            .project-intro {
+
+                padding: 0;
+
+            }
+
+
+            .project-scroll {
+
+                position: relative;
+
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+
+                width: 100%;
+
+                overflow: visible;
+
+                padding: 0 16px 30px;
+
+            }
+
+
+            .project-intro p,
+            .credits {
+
+                font-size: 11px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="topbar">
+
+            <div class="identity">
+
+                <a href="../index.html">Luiz Destri</a>
+
+                <span>Associate Creative Director</span>
+
+                <span>Copywriter</span>
+
+            </div>
+
+
+            <nav>
+
+                <a class="active" href="../index.html">
+                    Selected Work
+                </a>
+
+                <a href="../10-about/">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="project-layout">
+
+
+        <!-- COLUNA FIXA -->
+
+        <aside class="project-sidebar">
+
+            <section class="project-intro">
+
+                <p>
+
+                    E se a gente pudesse hackear a linguagem da propaganda esportiva por uma causa?
+                    As grandes marcas sempre incentivaram as pessoas a correr.
+                    Mas existe um propósito maior do que correr por si mesmo.
+
+                </p>
+
+            </section>
+
+        </aside>
+
+
+        <!-- GALERIA ROLÁVEL -->
+
+        <section class="project-scroll">
+
+            <div class="project-gallery">
+
+
+                <!-- 01 — VIDEOCASE -->
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1216420224"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </section>
+
+
+                <!-- 02 — HERO -->
+
+                <section class="hero">
+
+                    <img
+                        src="hero.jpg"
+                        alt="The Hardest Run"
+                    >
+
+                </section>
+
+
+                <!-- 03 — BOARD 01 -->
+
+                <section class="board">
+
+                    <img
+                        src="board-01.jpg"
+                        alt="The Hardest Run board 01"
+                    >
+
+                </section>
+
+
+                <!-- 04 — VIDEO 2 -->
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1218923560"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </section>
+
+
+                <!-- 05 — BOARD 02 -->
+
+                <section class="board">
+
+                    <img
+                        src="board-02.jpg"
+                        alt="The Hardest Run board 02"
+                    >
+
+                </section>
+
+
+                <!-- 06 — BOARD 03 -->
+
+                <section class="board">
+
+                    <img
+                        src="board-03.jpg"
+                        alt="The Hardest Run board 03"
+                    >
+
+                </section>
+
+
+                <!-- 07 — BOARD 04 -->
+
+                <section class="board">
+
+                    <img
+                        src="board-04.jpg"
+                        alt="The Hardest Run board 04"
+                    >
+
+                </section>
+
+
+                <!-- 08 — CRÉDITOS -->
+
+                <section class="credits">
+
+                    <p>Santiago Comunicação</p>
+
+                    <p>The Hardest Run</p>
+
+                    <p>Creative Director / Copywriter</p>
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

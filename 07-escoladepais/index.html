@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Escola de Pais do Brasil | Luiz Destri</title>
+
+
+    <!-- ======================================
+         FONTS
+    ======================================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ======================================
+         ESTILO GLOBAL
+    ======================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+
+    <!-- ======================================
+         ESTILOS ESPECÍFICOS
+    ======================================= -->
+
+    <style>
+
+        /* ==========================================
+           ESCOLA DE PAIS
+        ========================================== */
+
+        :root {
+
+            --header-height: 84px;
+            --sidebar-width: 340px;
+
+            --page-left: 18px;
+            --page-right: 18px;
+
+            --gallery-gap: 18px;
+            --label-video-gap: 10px;
+
+            --media-radius: 6px;
+
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+        }
+
+
+        /* ==========================================
+           HEADER FIXO
+        ========================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: var(--header-height);
+
+            z-index: 100;
+
+            background: var(--background);
+
+        }
+
+
+        /* ==========================================
+           ESTRUTURA DO PROJETO
+        ========================================== */
+
+        .project-layout {
+
+            position: fixed;
+
+            top: var(--header-height);
+            left: 0;
+
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+
+        }
+
+
+        /* ==========================================
+           COLUNA ESQUERDA FIXA
+        ========================================== */
+
+        .project-sidebar {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: var(--sidebar-width);
+            height: 100%;
+
+            padding-left: var(--page-left);
+
+            display: flex;
+            flex-direction: column;
+
+            background: var(--background);
+
+        }
+
+
+        /* ==========================================
+           TEXTO LATERAL
+        ========================================== */
+
+        .project-intro {
+
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+
+            padding-right: 18px;
+
+        }
+
+
+        .project-intro p {
+
+            margin: 0;
+
+            width: 100%;
+
+            font-size: 11px;
+            line-height: 1.65;
+            font-weight: 400;
+
+        }
+
+
+        /* ==========================================
+           ÁREA ROLÁVEL
+        ========================================== */
+
+        .project-scroll {
+
+            position: absolute;
+
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding-right: var(--page-right);
+            padding-bottom: 40px;
+
+            scrollbar-width: thin;
+            scrollbar-color: #999 transparent;
+
+        }
+
+
+        /* ==========================================
+           SCROLLBAR
+        ========================================== */
+
+        .project-scroll::-webkit-scrollbar {
+
+            width: 8px;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb {
+
+            background: #999;
+            border-radius: 10px;
+
+        }
+
+
+        .project-scroll::-webkit-scrollbar-thumb:hover {
+
+            background: #777;
+
+        }
+
+
+        /* ==========================================
+           GALERIA
+        ========================================== */
+
+        .project-gallery {
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: var(--gallery-gap);
+
+        }
+
+
+        .project-gallery > * {
+
+            width: 100%;
+            margin: 0;
+            flex: none;
+
+        }
+
+
+        /* ==========================================
+           TEXTO DOS CAPÍTULOS
+        ========================================== */
+
+        .chapter-text {
+
+            font-size: 14px;
+            line-height: 1.65;
+            font-weight: 400;
+
+        }
+
+
+        .chapter-text p {
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           LINHA COM 3 GIFS
+        ========================================== */
+
+        .gif-row {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 8px;
+
+        }
+
+
+        .gif-row img {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            aspect-ratio: 16 / 9;
+
+            object-fit: cover;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        /* ==========================================
+           AJUSTE DO PRIMEIRO GIF
+        ========================================== */
+
+        .gif-row img:first-child {
+
+            object-position: center bottom;
+
+        }
+
+
+        /* ==========================================
+           FAIXA / PERGUNTA
+        ========================================== */
+
+        .question-strip {
+
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        .question-strip img {
+
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+        }
+
+
+        /* ==========================================
+           PADRÃO DOS VÍDEOS
+        ========================================== */
+
+        .video {
+
+            position: relative;
+
+            aspect-ratio: 16 / 9;
+
+            overflow: hidden;
+
+            background: #000;
+
+            border-radius: var(--media-radius);
+
+        }
+
+
+        .video iframe {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+
+        }
+
+
+        /* ==========================================
+           RÁDIO
+        ========================================== */
+
+        .radio-section {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+
+        }
+
+
+        .radio-intro {
+
+            font-size: 14px;
+            line-height: 1.4;
+
+            font-weight: 400;
+
+            margin: 0;
+
+        }
+
+
+        .radio-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: var(--gallery-gap);
+
+        }
+
+
+        .radio-item {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: var(--label-video-gap);
+
+            min-width: 0;
+
+        }
+
+
+        .radio-label {
+
+            font-size: 12px;
+            line-height: 1.2;
+
+            font-weight: 500;
+
+        }
+
+
+        .audio-player {
+
+            width: 100%;
+
+            min-height: 58px;
+
+            box-sizing: border-box;
+
+            border: 1px solid rgba(0, 0, 0, 0.22);
+
+            border-radius: var(--media-radius);
+
+            padding: 0 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            background: var(--background);
+
+        }
+
+
+        .audio-play {
+
+            width: 28px;
+            height: 28px;
+
+            flex: 0 0 28px;
+
+            border: 1px solid rgba(0, 0, 0, 0.5);
+
+            border-radius: 50%;
+
+            background: transparent;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 0;
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-play::before {
+
+            content: "";
+
+            width: 0;
+            height: 0;
+
+            margin-left: 2px;
+
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 7px solid #000;
+
+        }
+
+
+        .audio-play.playing::before {
+
+            width: 8px;
+            height: 10px;
+
+            margin-left: 0;
+
+            border: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #000 0 3px,
+                    transparent 3px 5px,
+                    #000 5px 8px
+                );
+
+        }
+
+
+        .audio-progress {
+
+            flex: 1;
+
+            min-width: 0;
+
+            appearance: none;
+
+            height: 2px;
+
+            background: rgba(0, 0, 0, 0.18);
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-progress::-webkit-slider-thumb {
+
+            appearance: none;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #000;
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-progress::-moz-range-thumb {
+
+            width: 9px;
+            height: 9px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: #000;
+
+            cursor: pointer;
+
+        }
+
+
+        .audio-time {
+
+            width: 42px;
+
+            font-size: 11px;
+            line-height: 1;
+
+            text-align: right;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* ==========================================
+           DIVISÃO ENTRE CAPÍTULOS
+        ========================================== */
+
+        .chapter-divider {
+
+            height: 1px;
+
+            background: rgba(0, 0, 0, 0.22);
+
+        }
+
+
+        /* ==========================================
+           CRÉDITOS
+        ========================================== */
+
+        .credits {
+
+            width: 100%;
+
+            margin: 0;
+
+            padding: 0 0 20px;
+
+            font-size: 11px;
+
+            line-height: 1.65;
+
+            font-weight: 400;
+
+        }
+
+
+        .credits p {
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media(max-width:700px) {
+
+            :root {
+
+                --header-height: 104px;
+
+                --sidebar-width: 100%;
+
+                --page-left: 16px;
+                --page-right: 16px;
+
+                --gallery-gap: 14px;
+                --label-video-gap: 8px;
+
+            }
+
+
+            html,
+            body {
+
+                overflow: auto;
+
+            }
+
+
+            header {
+
+                position: relative;
+
+                height: auto;
+
+            }
+
+
+            .project-layout {
+
+                position: relative;
+
+                top: auto;
+
+                height: auto;
+
+            }
+
+
+            .project-sidebar {
+
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                padding: 16px;
+
+            }
+
+
+            .project-intro {
+
+                padding: 0;
+
+            }
+
+
+            .project-scroll {
+
+                position: relative;
+
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+
+                width: 100%;
+
+                overflow: visible;
+
+                padding: 0 16px 30px;
+
+            }
+
+
+            .gif-row,
+            .radio-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: var(--gallery-gap);
+
+            }
+
+
+            .project-intro p,
+            .credits {
+
+                font-size: 12px;
+
+            }
+
+
+            .chapter-text {
+
+                font-size: 14px;
+
+            }
+
+
+            .radio-intro {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+
+    <header>
+
+        <div class="topbar">
+
+            <div class="identity">
+
+                <a href="../index.html">
+                    Luiz Destri
+                </a>
+
+                <span>
+                    Associate Creative Director
+                </span>
+
+                <span>
+                    Copywriter
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    class="active"
+                    href="../index.html"
+                >
+                    Selected Work
+                </a>
+
+                <a href="../10-about/">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================
+         LAYOUT DO PROJETO
+    ======================================= -->
+
+    <main class="project-layout">
+
+
+        <!-- ======================================
+             COLUNA FIXA
+        ======================================= -->
+
+        <aside class="project-sidebar">
+
+            <section class="project-intro">
+
+                <p>
+                    Tem gente que chama de "frescura" qualquer tentativa de educar crianças e adolescentes de um jeito mais compreensivo. A Escola de Pais do Brasil decidiu lembrar que os tempos mudaram, os desafios são outros e que uma relação melhor com crianças e adolescentes começa na escolha dos adultos: escolher fazer melhor.
+                </p>
+
+            </section>
+
+        </aside>
+
+
+        <!-- ======================================
+             GALERIA ROLÁVEL
+        ======================================= -->
+
+        <section class="project-scroll">
+
+            <div class="project-gallery">
+
+
+                <!-- ======================================
+                     01 — ABERTURA
+                ======================================= -->
+
+                <section class="chapter-text">
+
+                    <p>
+                        Para quem foi criado no "manda quem pode, obedece quem tem juízo", qualquer tentativa de educação moderna soa assim.
+                    </p>
+
+                </section>
+
+
+                <!-- ======================================
+                     02 — MI-MI-MI
+                ======================================= -->
+
+                <section class="gif-row">
+
+                    <img
+                        src="mimimi-01.gif"
+                        alt="Mi-mi-mi — 01"
+                    >
+
+                    <img
+                        src="mimimi-02.gif"
+                        alt="Mi-mi-mi — 02"
+                    >
+
+                    <img
+                        src="mimimi-03.gif"
+                        alt="Mi-mi-mi — 03"
+                    >
+
+                </section>
+
+
+                <!-- ======================================
+                     03 — IDEIA DA CAMPANHA
+                ======================================= -->
+
+                <section class="chapter-text">
+
+                    <p>
+                        Nada mais justo do que provocar quem vive repetindo isso com as suas próprias palavras. Ou melhor, sílabas.
+                    </p>
+
+                </section>
+
+
+                <!-- ======================================
+                     04 — FILME
+                ======================================= -->
+
+                <section class="video">
+
+                    <iframe
+                        src="https://player.vimeo.com/video/1105436744"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </section>
+
+
+                <!-- ======================================
+                     05 — PERGUNTA
+                ======================================= -->
+
+                <section class="question-strip">
+
+                    <img
+                        src="frame-pergunta.jpg"
+                        alt="Pra você, a educação moderna é mimimi?"
+                    >
+
+                </section>
+
+
+                <!-- ======================================
+                     06 — RÁDIO
+                ======================================= -->
+
+                <section class="radio-section">
+
+                    <p class="radio-intro">
+                        A provocação não ficou só no filme.
+                    </p>
+
+
+                    <div class="radio-grid">
+
+
+                        <!-- ======================================
+                             SPOT 01 — RETIRO
+                        ======================================= -->
+
+                        <div class="radio-item">
+
+                            <div class="radio-label">
+                                Retiro
+                            </div>
+
+
+                            <div class="audio-player">
+
+                                <button
+                                    class="audio-play"
+                                    type="button"
+                                    aria-label="Reproduzir Retiro"
+                                ></button>
+
+
+                                <input
+                                    class="audio-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Progresso de Retiro"
+                                >
+
+
+                                <span class="audio-time">
+                                    0:00
+                                </span>
+
+                            </div>
+
+
+                            <audio
+                                src="spot-retiro.mp3"
+                                preload="metadata"
+                            ></audio>
+
+                        </div>
+
+
+                        <!-- ======================================
+                             SPOT 02 — ACAMPAMENTO
+                        ======================================= -->
+
+                        <div class="radio-item">
+
+                            <div class="radio-label">
+                                Acampamento
+                            </div>
+
+
+                            <div class="audio-player">
+
+                                <button
+                                    class="audio-play"
+                                    type="button"
+                                    aria-label="Reproduzir Acampamento"
+                                ></button>
+
+
+                                <input
+                                    class="audio-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Progresso de Acampamento"
+                                >
+
+
+                                <span class="audio-time">
+                                    0:00
+                                </span>
+
+                            </div>
+
+
+                            <audio
+                                src="spot-acampamento.mp3"
+                                preload="metadata"
+                            ></audio>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                <!-- ======================================
+                     07 — SEPARADOR
+                ======================================= -->
+
+                <div
+                    class="chapter-divider"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- ======================================
+                     08 — CRÉDITOS
+                ======================================= -->
+
+                <section class="credits">
+
+                    <p>
+                        Santiago Comunicação<br>
+                        EPB - Escola de Pais do Brasil<br>
+                        Associate Creative Director / Copywriter
+                    </p>
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ======================================
+         PLAYER DE ÁUDIO
+    ======================================= -->
+
+    <script>
+
+        const audioItems =
+            document.querySelectorAll(".radio-item");
+
+
+        function stopOtherAudios(currentAudio) {
+
+            document
+                .querySelectorAll(".radio-item audio")
+                .forEach(otherAudio => {
+
+                    if (otherAudio !== currentAudio) {
+
+                        otherAudio.pause();
+
+                        const otherItem =
+                            otherAudio.closest(".radio-item");
+
+
+                        if (otherItem) {
+
+                            const otherButton =
+                                otherItem.querySelector(".audio-play");
+
+
+                            if (otherButton) {
+
+                                otherButton.classList.remove(
+                                    "playing"
+                                );
+
+                            }
+
+                        }
+
+                    }
+
+                });
+
+        }
+
+
+        audioItems.forEach(item => {
+
+            const audio =
+                item.querySelector("audio");
+
+
+            const playButton =
+                item.querySelector(".audio-play");
+
+
+            const progress =
+                item.querySelector(".audio-progress");
+
+
+            const timeDisplay =
+                item.querySelector(".audio-time");
+
+
+            function formatTime(seconds) {
+
+                if (!isFinite(seconds)) {
+
+                    return "0:00";
+
+                }
+
+
+                const minutes =
+                    Math.floor(seconds / 60);
+
+
+                const remainingSeconds =
+                    Math.floor(seconds % 60)
+                        .toString()
+                        .padStart(2, "0");
+
+
+                return `${minutes}:${remainingSeconds}`;
+
+            }
+
+
+            audio.addEventListener("loadedmetadata", () => {
+
+                timeDisplay.textContent =
+                    formatTime(audio.duration);
+
+            });
+
+
+            audio.addEventListener("timeupdate", () => {
+
+                if (audio.duration) {
+
+                    progress.value =
+                        (audio.currentTime / audio.duration) * 100;
+
+                }
+
+
+                timeDisplay.textContent =
+                    formatTime(audio.currentTime);
+
+            });
+
+
+            audio.addEventListener("play", () => {
+
+                stopOtherAudios(audio);
+
+                playButton.classList.add("playing");
+
+            });
+
+
+            audio.addEventListener("pause", () => {
+
+                playButton.classList.remove("playing");
+
+            });
+
+
+            audio.addEventListener("ended", () => {
+
+                playButton.classList.remove("playing");
+
+                progress.value = 0;
+
+                timeDisplay.textContent =
+                    formatTime(audio.duration);
+
+            });
+
+
+            audio.addEventListener("error", () => {
+
+                playButton.classList.remove("playing");
+
+                timeDisplay.textContent = "0:00";
+
+            });
+
+
+            playButton.addEventListener("click", async () => {
+
+                try {
+
+                    if (audio.paused) {
+
+                        stopOtherAudios(audio);
+
+                        await audio.play();
+
+                    } else {
+
+                        audio.pause();
+
+                    }
+
+                } catch (error) {
+
+                    playButton.classList.remove("playing");
+
+                    console.error(
+                        "Erro ao reproduzir o áudio:",
+                        error
+                    );
+
+                }
+
+            });
+
+
+            progress.addEventListener("input", () => {
+
+                if (audio.duration) {
+
+                    audio.currentTime =
+                        (progress.value / 100) * audio.duration;
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
