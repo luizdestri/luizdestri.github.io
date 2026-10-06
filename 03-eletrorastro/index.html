@@ -1,1271 +1,2543 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
+
 
 <head>
 
+
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 
     <title>Eletrorastro | Luiz Destri</title>
 
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+
+
     <link rel="stylesheet" href="../style.css">
+
+
 
     <style>
 
+
+
         /* ==========================================
+
            ELETRORASTRO
+
         ========================================== */
 
+
+
         :root {
+
             --header-height: 84px;
+
             --sidebar-width: 340px;
+
             --page-left: 18px;
+
             --page-right: 18px;
+
             --gallery-gap: 18px;
+
             --label-video-gap: 10px;
+
             --media-radius: 6px;
+
         }
+
+
+
 
 
         html,
+
         body {
+
             width: 100%;
+
             height: 100%;
+
             overflow: hidden;
+
         }
 
 
+
+
+
         /* ==========================================
+
            HEADER FIXO
+
         ========================================== */
+
+
 
         header {
+
             position: fixed;
+
             top: 0;
+
             left: 0;
+
             width: 100%;
+
             height: var(--header-height);
+
             z-index: 100;
+
             background: var(--background);
+
         }
 
 
+
+
+
         /* ==========================================
+
            ESTRUTURA DO PROJETO
+
         ========================================== */
+
+
 
         .project-layout {
+
             position: fixed;
+
             top: var(--header-height);
+
             left: 0;
+
             width: 100%;
+
             height: calc(100vh - var(--header-height));
+
         }
 
 
+
+
+
         /* ==========================================
+
            COLUNA ESQUERDA FIXA
+
         ========================================== */
+
+
 
         .project-sidebar {
+
             position: absolute;
+
             top: 0;
+
             left: 0;
+
             width: var(--sidebar-width);
+
             height: 100%;
+
             padding-left: var(--page-left);
+
             display: flex;
+
             flex-direction: column;
+
             background: var(--background);
+
         }
 
 
+
+
+
         /* ==========================================
+
            TEXTO LATERAL
+
         ========================================== */
+
+
 
         .project-intro {
+
             flex: 1;
+
             display: flex;
+
             align-items: center;
+
             padding-right: 18px;
+
         }
+
+
 
         .project-intro p {
+
             margin: 0;
+
             width: 100%;
+
             font-size: 11px;
+
             line-height: 1.65;
+
             font-weight: 400;
+
         }
 
 
+
+
+
         /* ==========================================
+
            ÁREA ROLÁVEL
+
         ========================================== */
+
+
 
         .project-scroll {
+
             position: absolute;
+
             top: 0;
+
             left: var(--sidebar-width);
+
             right: 0;
+
             bottom: 0;
+
             overflow-y: auto;
+
             overflow-x: hidden;
+
             padding-right: var(--page-right);
+
             padding-bottom: 40px;
+
             scrollbar-width: thin;
+
             scrollbar-color: #999 transparent;
+
         }
 
 
+
+
+
         /* ==========================================
+
            SCROLLBAR
+
         ========================================== */
+
+
 
         .project-scroll::-webkit-scrollbar {
+
             width: 8px;
+
         }
+
+
 
         .project-scroll::-webkit-scrollbar-track {
+
             background: transparent;
+
         }
+
+
 
         .project-scroll::-webkit-scrollbar-thumb {
+
             background: #999;
+
             border-radius: 10px;
+
         }
+
+
 
         .project-scroll::-webkit-scrollbar-thumb:hover {
+
             background: #777;
+
         }
 
 
+
+
+
         /* ==========================================
+
            GALERIA
+
         ========================================== */
+
+
 
         .project-gallery {
+
             width: 100%;
+
             display: flex;
+
             flex-direction: column;
+
             gap: var(--gallery-gap);
+
         }
+
+
 
         .project-gallery > * {
+
             width: 100%;
+
             margin: 0;
+
             flex: none;
+
         }
 
 
+
+
+
         /* ==========================================
+
            TEXTO DOS CAPÍTULOS
+
         ========================================== */
+
+
 
         .chapter-text {
+
             font-size: 14px;
+
             line-height: 1.65;
+
             font-weight: 400;
+
         }
+
+
 
         .chapter-text p {
+
             margin: 0;
+
         }
 
 
+
+
+
         /* ==========================================
+
            TEXTO DE APRESENTAÇÃO DAS VELHINHAS
+
         ========================================== */
+
+
 
         .velhinhas-intro {
+
             line-height: 1.4;
+
         }
 
 
+
+
+
         /* ==========================================
+
            DIVISÃO ENTRE CAPÍTULOS
+
         ========================================== */
+
+
 
         .chapter-divider {
+
             height: 1px;
+
             background: rgba(0, 0, 0, 0.22);
+
         }
 
 
+
+
+
         /* ==========================================
+
            PADRÃO DOS VÍDEOS
+
         ========================================== */
+
+
 
         .video,
+
         .video-row {
+
             width: 100%;
+
             margin: 0;
+
             border-radius: var(--media-radius);
+
         }
+
+
 
         .video {
+
             position: relative;
+
             aspect-ratio: 16 / 9;
+
             overflow: hidden;
+
             background: #000;
+
         }
+
+
 
         .video iframe {
+
             position: absolute;
+
             top: 0;
+
             left: 0;
+
             display: block;
+
             width: 100%;
+
             height: 100%;
+
             border: 0;
+
         }
 
 
+
+
+
         /* ==========================================
+
            LINHA COM 3 VÍDEOS
+
         ========================================== */
+
+
 
         .video-row.three {
+
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: var(--gallery-gap);
+
             background: transparent;
+
             overflow: visible;
+
         }
 
 
+
+
+
         /* ==========================================
+
            LINHA COM 2 VÍDEOS
+
         ========================================== */
+
+
 
         .video-row.two {
+
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: var(--gallery-gap);
+
             background: transparent;
+
             overflow: visible;
+
         }
 
 
+
+
+
         /* ==========================================
+
            IDENTIFICAÇÃO DOS MOMENTOS DA CAMPANHA
+
         ========================================== */
+
+
 
         .campaign-label {
+
             font-size: 12px;
+
             line-height: 1.2;
+
             font-weight: 500;
+
         }
+
+
 
         .campaign-label p {
+
             margin: 0;
+
         }
 
 
+
+
+
         /* ==========================================
+
            GRUPO INSTITUCIONAIS
+
         ========================================== */
+
+
 
         .campaign-single {
+
             display: flex;
+
             flex-direction: column;
+
             gap: var(--label-video-gap);
+
         }
 
 
+
+
+
         /* ==========================================
+
            GRUPOS DUPLOS
+
         ========================================== */
+
+
 
         .campaign-pair {
+
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: var(--gallery-gap);
+
         }
+
+
 
         .campaign-item {
+
             display: flex;
+
             flex-direction: column;
+
             gap: var(--label-video-gap);
+
             min-width: 0;
+
         }
 
 
+
+
+
         /* ==========================================
+
            VELHINHAS — MINI HERO
+
         ========================================== */
+
+
 
         .velhinhas-hero {
+
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 0;
+
             width: 100%;
+
             aspect-ratio: 16 / 5;
+
             overflow: hidden;
+
             border-radius: var(--media-radius);
+
         }
+
+
 
         .velhinhas-hero-item {
+
             min-width: 0;
+
             height: 100%;
+
             overflow: hidden;
+
         }
+
+
 
         .velhinhas-hero img {
+
             display: block;
+
             width: 100%;
+
             height: 100%;
+
             object-fit: cover;
+
             margin: 0;
+
         }
+
+
 
         .velhinhas-hero-item:first-child img {
+
             object-position: center center;
+
         }
+
+
 
         .velhinhas-hero-item:last-child img {
+
             object-position: center center;
+
         }
 
 
+
+
+
         /* ==========================================
+
            RÁDIO
+
         ========================================== */
+
+
 
         .radio-section {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 18px;
+
         }
+
+
 
         .radio-intro {
+
             font-size: 14px;
+
             line-height: 1.4;
+
             font-weight: 400;
+
             margin: 0;
+
         }
+
+
 
         .radio-grid {
+
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: var(--gallery-gap);
+
         }
+
+
 
         .radio-item {
+
             display: flex;
+
             flex-direction: column;
+
             gap: var(--label-video-gap);
+
             min-width: 0;
+
         }
+
+
 
         .radio-label {
+
             font-size: 12px;
+
             line-height: 1.2;
+
             font-weight: 500;
+
         }
+
+
 
         .audio-player {
+
             width: 100%;
+
             min-height: 58px;
+
             box-sizing: border-box;
+
             border: 1px solid rgba(0, 0, 0, 0.22);
+
             border-radius: var(--media-radius);
+
             padding: 0 16px;
+
             display: flex;
+
             align-items: center;
+
             gap: 14px;
+
             background: var(--background);
+
         }
+
+
 
         .audio-play {
+
             width: 28px;
+
             height: 28px;
+
             flex: 0 0 28px;
+
             border: 1px solid rgba(0, 0, 0, 0.5);
+
             border-radius: 50%;
+
             background: transparent;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             padding: 0;
+
             cursor: pointer;
+
         }
+
+
 
         .audio-play::before {
+
             content: "";
+
             width: 0;
+
             height: 0;
+
             margin-left: 2px;
+
             border-top: 5px solid transparent;
+
             border-bottom: 5px solid transparent;
+
             border-left: 7px solid #000;
+
         }
+
+
 
         .audio-play.playing::before {
+
             width: 8px;
+
             height: 10px;
+
             margin-left: 0;
+
             border: 0;
+
             background:
+
                 linear-gradient(
+
                     to right,
+
                     #000 0 3px,
+
                     transparent 3px 5px,
+
                     #000 5px 8px
+
                 );
+
         }
+
+
 
         .audio-progress {
+
             flex: 1;
+
             min-width: 0;
+
             appearance: none;
+
             height: 2px;
+
             background: rgba(0, 0, 0, 0.18);
+
             cursor: pointer;
+
         }
+
+
 
         .audio-progress::-webkit-slider-thumb {
+
             appearance: none;
+
             width: 9px;
+
             height: 9px;
+
             border-radius: 50%;
+
             background: #000;
+
             cursor: pointer;
+
         }
+
+
 
         .audio-progress::-moz-range-thumb {
+
             width: 9px;
+
             height: 9px;
+
             border: 0;
+
             border-radius: 50%;
+
             background: #000;
+
             cursor: pointer;
+
         }
+
+
 
         .audio-time {
+
             width: 42px;
+
             font-size: 11px;
+
             line-height: 1;
+
             text-align: right;
+
             white-space: nowrap;
+
         }
 
 
+
+
+
         /* ==========================================
+
            CRÉDITOS
+
         ========================================== */
+
+
 
         .credits {
+
             width: 100%;
+
             margin: 0;
+
             padding: 0 0 20px;
+
             font-size: 11px;
+
             line-height: 1.65;
+
             font-weight: 400;
+
         }
+
+
 
         .credits p {
+
             margin: 0;
+
         }
 
 
+
+
+
         /* ==========================================
+
            AJUSTE DO SEPARADOR FINAL
+
         ========================================== */
+
+
 
         .radio-section + .chapter-divider {
+
             margin-top: 8px;
+
         }
 
 
+
+
+
         /* ==========================================
+
            MOBILE
+
         ========================================== */
+
+
 
         @media(max-width:700px) {
 
+
+
             :root {
+
                 --header-height: 104px;
+
                 --sidebar-width: 100%;
+
                 --page-left: 16px;
+
                 --page-right: 16px;
+
                 --gallery-gap: 14px;
+
                 --label-video-gap: 8px;
+
             }
+
+
 
             html,
+
             body {
+
                 overflow: auto;
+
             }
+
+
 
             header {
+
                 position: relative;
+
                 height: auto;
+
             }
+
+
 
             .project-layout {
+
                 position: relative;
+
                 top: auto;
+
                 height: auto;
+
+                padding-top: 0;
+
             }
+
+
 
             .project-sidebar {
+
                 position: relative;
+
                 width: 100%;
+
                 height: auto;
+
                 padding: 16px;
+
             }
+
+
 
             .project-intro {
+
                 padding: 0;
+
             }
+
+
 
             .project-scroll {
+
                 position: relative;
+
                 top: auto;
+
                 left: auto;
+
                 right: auto;
+
                 bottom: auto;
+
                 width: 100%;
+
                 overflow: visible;
+
                 padding: 0 16px 30px;
+
             }
+
+
 
             .video-row.three,
+
             .video-row.two,
+
             .campaign-pair,
+
             .radio-grid {
+
                 grid-template-columns: 1fr;
+
                 gap: var(--gallery-gap);
+
             }
+
+
 
             .project-intro p,
+
             .credits {
+
                 font-size: 12px;
+
             }
 
+
+
             .chapter-text {
+
                 font-size: 14px;
+
             }
+
         }
+
+
 
     </style>
 
+
+
 </head>
+
+
+
 
 
 <body>
 
 
+
+
+
     <header>
+
+
 
         <div class="topbar">
 
+
+
             <div class="identity">
 
+
+
                 <a href="../index.html">Luiz Destri</a>
+
                 <span>Associate Creative Director</span>
+
                 <span>Copywriter</span>
+
+
 
             </div>
 
 
+
+
+
             <nav>
 
+
+
                 <a class="active" href="../index.html">
+
                     Selected Work
+
                 </a>
 
+
+
                 <a href="../10-about/">
+
                     About
+
                 </a>
+
+
 
             </nav>
 
+
+
         </div>
 
+
+
     </header>
+
+
+
 
 
     <main class="project-layout">
 
 
+
+
+
         <!-- ======================================
+
              COLUNA FIXA
+
         ======================================= -->
+
+
 
         <aside class="project-sidebar">
 
+
+
             <section class="project-intro">
 
+
+
                 <p>
+
                     Uma pequena rede de materiais elétricos e de<br>
+
                     iluminação que nunca tinha feito propaganda.<br>
+
                     Até que experimentou ideias e descobriu como<br>
+
                     elas podem transformar não apenas a comunicação,<br>
+
                     mas todo o seu negócio.
+
                 </p>
 
+
+
             </section>
+
+
 
         </aside>
 
 
+
+
+
         <!-- ======================================
+
              GALERIA ROLÁVEL
+
         ======================================= -->
 
+
+
         <section class="project-scroll">
+
+
 
             <div class="project-gallery">
 
 
+
+
+
                 <!-- ======================================
+
                      01 — GAMBIARRAS
+
                 ======================================= -->
+
+
 
                 <section class="chapter-text">
 
+
+
                     <p>
+
                         Começou com filmes simples. Cartelados. Mas com uma coisa que a Eletrorastro ainda não tinha experimentado: humor.
+
                     </p>
 
+
+
                 </section>
+
+
+
 
 
                 <!-- TOMADAS — FILME PRINCIPAL -->
 
+
+
                 <section class="video gambiarras-feature">
 
+
+
                     <iframe
+
                         src="https://player.vimeo.com/video/1100703553"
+
                         allow="autoplay; fullscreen; picture-in-picture"
+
                         allowfullscreen>
+
                     </iframe>
 
+
+
                 </section>
+
+
+
 
 
                 <!-- PENDENTES / CHUVEIROS -->
 
+
+
                 <section class="video-row two">
+
+
 
                     <div class="video">
 
+
+
                         <iframe
+
                             src="https://player.vimeo.com/video/1100704047"
+
                             allow="autoplay; fullscreen; picture-in-picture"
+
                             allowfullscreen>
+
                         </iframe>
 
+
+
                     </div>
+
+
+
 
 
                     <div class="video">
 
+
+
                         <iframe
+
                             src="https://player.vimeo.com/video/1100702978"
+
                             allow="autoplay; fullscreen; picture-in-picture"
+
                             allowfullscreen>
+
                         </iframe>
+
+
 
                     </div>
 
+
+
                 </section>
+
+
+
 
 
                 <div class="chapter-divider" aria-hidden="true"></div>
 
 
+
+
+
                 <!-- ======================================
+
                      02 — GRINGOS
+
                 ======================================= -->
+
+
 
                 <section class="chapter-text">
 
+
+
                     <p>
+
                         Depois, veio uma linha própria de produtos, inspirados em peças com design internacional. Então, experimentamos um casting “internacional”: uns gringos para dar o recado.
+
                     </p>
 
+
+
                 </section>
+
+
+
 
 
                 <section class="video-row two">
 
+
+
                     <div class="video">
 
+
+
                         <iframe
+
                             src="https://player.vimeo.com/video/1100705701"
+
                             allow="autoplay; fullscreen; picture-in-picture"
+
                             allowfullscreen>
+
                         </iframe>
 
+
+
                     </div>
+
+
+
 
 
                     <div class="video">
 
+
+
                         <iframe
+
                             src="https://player.vimeo.com/video/1100706844"
+
                             allow="autoplay; fullscreen; picture-in-picture"
+
                             allowfullscreen>
+
                         </iframe>
 
+
+
                     </div>
+
+
 
                 </section>
+
+
+
 
 
                 <div class="chapter-divider" aria-hidden="true"></div>
 
 
+
+
+
                 <!-- ======================================
+
                      03 — PRODUTOS FALANTES
+
                 ======================================= -->
+
+
 
                 <section class="chapter-text">
 
+
+
                     <p>
+
                         A próxima fase foi deixar os produtos falarem por si mesmos. Não os nossos, mas os que as pessoas têm em casa e que precisam ser trocados.
+
                     </p>
 
+
+
                 </section>
+
+
+
 
 
                 <section class="video">
 
+
+
                     <iframe
+
                         src="https://player.vimeo.com/video/1100707315"
+
                         allow="autoplay; fullscreen; picture-in-picture"
+
                         allowfullscreen>
+
                     </iframe>
 
+
+
                 </section>
+
+
+
 
 
                 <div class="chapter-divider" aria-hidden="true"></div>
 
 
+
+
+
                 <!-- ======================================
+
                      04 — VELHINHAS
+
                 ======================================= -->
+
+
 
                 <section class="chapter-text velhinhas-intro">
 
+
+
                     <p>
+
                         E agora, a Eletrorastro já tem até garotas-propaganda. Ou melhor: senhoras-propaganda. Porque descontos que vão dar o que falar só poderiam ser anunciados por grandes fofoqueiras da cidade.
+
                     </p>
 
+
+
                 </section>
+
+
+
 
 
                 <!-- MINI HERO DAS VELHINHAS -->
 
+
+
                 <section class="velhinhas-hero">
 
+
+
                     <div class="velhinhas-hero-item">
 
+
+
                         <img
+
                             src="hero01.jpg"
+
                             alt="Velhinha Eletrorastro 01"
+
                         >
 
+
+
                     </div>
+
+
+
 
 
                     <div class="velhinhas-hero-item">
 
+
+
                         <img
+
                             src="hero02.jpg"
+
                             alt="Velhinha Eletrorastro 02"
+
                         >
 
+
+
                     </div>
+
+
 
                 </section>
 
 
+
+
+
                 <!-- ======================================
+
                      INSTITUCIONAIS
+
                 ======================================= -->
+
+
 
                 <section class="campaign-single">
 
+
+
                     <div class="campaign-label">
+
                         <p>Institucionais</p>
+
                     </div>
+
+
+
 
 
                     <div class="video">
 
+
+
                         <iframe
+
                             src="https://player.vimeo.com/video/1100708195"
+
                             allow="autoplay; fullscreen; picture-in-picture"
+
                             allowfullscreen>
+
                         </iframe>
+
+
 
                     </div>
 
+
+
                 </section>
+
+
+
 
 
                 <!-- INSTITUCIONAL 02 -->
 
+
+
                 <section class="video">
 
+
+
                     <iframe
+
                         src="https://player.vimeo.com/video/1100709822"
+
                         allow="autoplay; fullscreen; picture-in-picture"
+
                         allowfullscreen>
+
                     </iframe>
+
+
 
                 </section>
 
 
+
+
+
                 <!-- ======================================
+
                      DIA DAS MÃES / ANIVERSÁRIO
+
                 ======================================= -->
 
+
+
                 <section class="campaign-pair">
+
+
+
 
 
                     <!-- DIA DAS MÃES -->
 
+
+
                     <div class="campaign-item">
 
+
+
                         <div class="campaign-label">
+
                             <p>Dia das Mães</p>
+
                         </div>
+
+
+
 
 
                         <div class="video">
 
+
+
                             <iframe
+
                                 src="https://player.vimeo.com/video/1100711032"
+
                                 allow="autoplay; fullscreen; picture-in-picture"
+
                                 allowfullscreen>
+
                             </iframe>
+
+
 
                         </div>
 
+
+
                     </div>
+
+
+
 
 
                     <!-- ANIVERSÁRIO -->
 
+
+
                     <div class="campaign-item">
 
+
+
                         <div class="campaign-label">
+
                             <p>Aniversário Eletrorastro</p>
+
                         </div>
+
+
+
 
 
                         <div class="video">
 
+
+
                             <iframe
+
                                 src="https://player.vimeo.com/video/1100712023"
+
                                 allow="autoplay; fullscreen; picture-in-picture"
+
                                 allowfullscreen>
+
                             </iframe>
+
+
 
                         </div>
 
+
+
                     </div>
+
+
 
                 </section>
 
 
+
+
+
                 <!-- ======================================
+
                      BLACK FRIDAY / FIM DE ANO
+
                 ======================================= -->
+
+
 
                 <section class="campaign-pair">
 
 
+
+
+
                     <!-- BLACK FRIDAY -->
+
+
 
                     <div class="campaign-item">
 
+
+
                         <div class="campaign-label">
+
                             <p>Black Friday</p>
+
                         </div>
+
+
+
 
 
                         <div class="video">
 
+
+
                             <iframe
+
                                 src="https://player.vimeo.com/video/1219048549"
+
                                 allow="autoplay; fullscreen; picture-in-picture"
+
                                 allowfullscreen>
+
                             </iframe>
+
+
 
                         </div>
 
+
+
                     </div>
+
+
+
 
 
                     <!-- FIM DE ANO -->
 
+
+
                     <div class="campaign-item">
 
+
+
                         <div class="campaign-label">
+
                             <p>Fim de Ano</p>
+
                         </div>
+
+
+
 
 
                         <div class="video">
 
+
+
                             <iframe
+
                                 src="https://player.vimeo.com/video/1219051504"
+
                                 allow="autoplay; fullscreen; picture-in-picture"
+
                                 allowfullscreen>
+
                             </iframe>
+
+
 
                         </div>
 
+
+
                     </div>
 
+
+
                 </section>
+
+
+
 
 
                 <div class="chapter-divider" aria-hidden="true"></div>
 
 
+
+
+
                 <!-- ======================================
+
                      RÁDIO
+
                 ======================================= -->
+
+
 
                 <section class="radio-section">
 
 
+
+
+
                     <p class="radio-intro">
+
                         E as fofoqueiras também foram parar no rádio.
+
                     </p>
+
+
+
 
 
                     <div class="radio-grid">
 
 
+
+
+
                         <!-- LIGAÇÃO -->
+
+
 
                         <div class="radio-item">
 
+
+
                             <div class="radio-label">
+
                                 Ligação
+
                             </div>
+
+
+
 
 
                             <div class="audio-player">
 
+
+
                                 <button
+
                                     class="audio-play"
+
                                     type="button"
+
                                     aria-label="Reproduzir Ligação">
+
                                 </button>
 
 
+
+
+
                                 <input
+
                                     class="audio-progress"
+
                                     type="range"
+
                                     min="0"
+
                                     max="100"
+
                                     value="0"
+
                                     step="0.1"
+
                                 >
 
 
+
+
+
                                 <span class="audio-time">
+
                                     0:00
+
                                 </span>
 
+
+
                             </div>
+
+
+
 
 
                             <audio src="radio-institucional-01.mp3"></audio>
 
+
+
                         </div>
+
+
+
 
 
                         <!-- PLANTÃO DE FOFOCAS -->
 
+
+
                         <div class="radio-item">
 
+
+
                             <div class="radio-label">
+
                                 Plantão de fofocas
+
                             </div>
+
+
+
 
 
                             <div class="audio-player">
 
+
+
                                 <button
+
                                     class="audio-play"
+
                                     type="button"
+
                                     aria-label="Reproduzir Plantão de fofocas">
+
                                 </button>
 
 
+
+
+
                                 <input
+
                                     class="audio-progress"
+
                                     type="range"
+
                                     min="0"
+
                                     max="100"
+
                                     value="0"
+
                                     step="0.1"
+
                                 >
 
 
+
+
+
                                 <span class="audio-time">
+
                                     0:00
+
                                 </span>
 
+
+
                             </div>
+
+
+
 
 
                             <audio src="radio-institucional-02.mp3"></audio>
 
+
+
                         </div>
+
+
+
 
 
                         <!-- ANIVERSALDO -->
 
+
+
                         <div class="radio-item">
 
+
+
                             <div class="radio-label">
+
                                 Aniversaldo
+
                             </div>
+
+
+
 
 
                             <div class="audio-player">
 
+
+
                                 <button
+
                                     class="audio-play"
+
                                     type="button"
+
                                     aria-label="Reproduzir Aniversaldo">
+
                                 </button>
 
 
+
+
+
                                 <input
+
                                     class="audio-progress"
+
                                     type="range"
+
                                     min="0"
+
                                     max="100"
+
                                     value="0"
+
                                     step="0.1"
+
                                 >
 
 
+
+
+
                                 <span class="audio-time">
+
                                     0:00
+
                                 </span>
 
+
+
                             </div>
+
+
+
 
 
                             <audio src="radio-aniversario.mp3"></audio>
 
+
+
                         </div>
+
+
+
 
 
                         <!-- ADEUS, ABAJUR VELHO -->
 
+
+
                         <div class="radio-item">
 
+
+
                             <div class="radio-label">
+
                                 Adeus, abajur velho
+
                             </div>
+
+
+
 
 
                             <div class="audio-player">
 
+
+
                                 <button
+
                                     class="audio-play"
+
                                     type="button"
+
                                     aria-label="Reproduzir Adeus, abajur velho">
+
                                 </button>
 
 
+
+
+
                                 <input
+
                                     class="audio-progress"
+
                                     type="range"
+
                                     min="0"
+
                                     max="100"
+
                                     value="0"
+
                                     step="0.1"
+
                                 >
 
 
+
+
+
                                 <span class="audio-time">
+
                                     0:00
+
                                 </span>
+
+
 
                             </div>
 
 
+
+
+
                             <audio src="radio-fim-de-ano.mp3"></audio>
+
+
 
                         </div>
 
 
+
+
+
                     </div>
 
+
+
                 </section>
+
+
+
 
 
                 <div class="chapter-divider" aria-hidden="true"></div>
 
 
+
+
+
                 <!-- ======================================
+
                      05 — CRÉDITOS
+
                 ======================================= -->
+
+
 
                 <section class="credits">
 
+
+
                     <p>Santiago Comunicação</p>
+
                     <p>Eletrorastro</p>
+
                     <p>Associate Creative Director / Copywriter</p>
+
+
 
                 </section>
 
 
+
+
+
             </div>
 
+
+
         </section>
+
+
 
     </main>
 
 
+
+
+
     <script>
 
+
+
         /* ==========================================
+
            PLAYER DE ÁUDIO
+
         ========================================== */
+
+
 
         const audioItems = document.querySelectorAll(".radio-item");
 
 
+
+
+
         audioItems.forEach(item => {
 
+
+
             const audio = item.querySelector("audio");
+
             const playButton = item.querySelector(".audio-play");
+
             const progress = item.querySelector(".audio-progress");
+
             const timeDisplay = item.querySelector(".audio-time");
+
+
+
 
 
             function formatTime(seconds) {
 
+
+
                 if (!isFinite(seconds)) {
+
                     return "0:00";
+
                 }
+
+
 
                 const minutes = Math.floor(seconds / 60);
 
+
+
                 const remainingSeconds = Math.floor(seconds % 60)
+
                     .toString()
+
                     .padStart(2, "0");
 
+
+
                 return `${minutes}:${remainingSeconds}`;
+
+
 
             }
 
 
+
+
+
             playButton.addEventListener("click", () => {
+
+
 
                 document.querySelectorAll(".radio-item audio").forEach(otherAudio => {
 
+
+
                     if (otherAudio !== audio) {
+
+
 
                         otherAudio.pause();
 
+
+
                         const otherItem = otherAudio.closest(".radio-item");
+
+
 
                         if (otherItem) {
 
+
+
                             const otherButton =
+
                                 otherItem.querySelector(".audio-play");
 
+
+
                             if (otherButton) {
+
                                 otherButton.classList.remove("playing");
+
                             }
+
+
 
                         }
 
+
+
                     }
+
+
 
                 });
 
 
+
+
+
                 if (audio.paused) {
 
+
+
                     audio.play();
+
                     playButton.classList.add("playing");
+
+
 
                 } else {
 
+
+
                     audio.pause();
+
                     playButton.classList.remove("playing");
+
+
 
                 }
 
+
+
             });
+
+
+
 
 
             audio.addEventListener("loadedmetadata", () => {
 
+
+
                 timeDisplay.textContent =
+
                     formatTime(audio.duration);
 
+
+
             });
+
+
+
 
 
             audio.addEventListener("timeupdate", () => {
 
+
+
                 if (audio.duration) {
 
+
+
                     progress.value =
+
                         (audio.currentTime / audio.duration) * 100;
+
+
 
                 }
 
+
+
                 timeDisplay.textContent =
+
                     formatTime(audio.currentTime);
 
+
+
             });
+
+
+
 
 
             progress.addEventListener("input", () => {
 
+
+
                 if (audio.duration) {
 
+
+
                     audio.currentTime =
+
                         (progress.value / 100) * audio.duration;
+
+
 
                 }
 
+
+
             });
+
+
+
 
 
             audio.addEventListener("ended", () => {
 
+
+
                 playButton.classList.remove("playing");
+
+
 
                 progress.value = 0;
 
+
+
                 timeDisplay.textContent =
+
                     formatTime(audio.duration);
+
+
 
             });
 
+
+
         });
+
+
 
     </script>
 
 
+
+
+
 </body>
+
+
 
 </html>
