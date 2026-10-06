@@ -1028,6 +1028,17 @@ main{
     }
 
 
+    /* Remove desktop vertical dividers on mobile */
+
+    .about-block + .about-block,
+    .about-detail + .about-detail,
+    .about-contact{
+
+        border-left:0;
+
+    }
+
+
     .about-block:first-child,
     .about-detail:first-child{
 
