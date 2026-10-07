@@ -1,1477 +1,2955 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
+
 
 <head>
 
+
+
     <meta charset="UTF-8">
 
+
+
     <meta
+
         name="viewport"
+
         content="width=device-width, initial-scale=1.0"
+
     >
+
+
 
     <title>Rádio | Luiz Destri</title>
 
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet"
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin
+
     >
+
+
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+
 
     <link rel="stylesheet" href="../style.css">
 
 
+
+
+
     <style>
 
+
+
         /* ==========================================
+
            PROJETO 09 — RÁDIO
+
         ========================================== */
 
+
+
         :root {
+
             --header-height: 84px;
+
             --sidebar-width: 340px;
+
             --page-left: 18px;
+
             --page-right: 18px;
+
+
 
             --gallery-gap: 10px;
 
+
+
             /* mais respiro entre campanhas */
+
             --campaign-gap: 58px;
 
+
+
             --player-width: 40%;
+
             --media-radius: 6px;
+
         }
+
+
+
 
 
         /* ==========================================
+
            ESTRUTURA GERAL
+
         ========================================== */
 
+
+
         html,
+
         body {
+
             width: 100%;
+
             height: 100%;
+
             overflow: hidden;
+
         }
+
+
+
 
 
         header {
+
             position: fixed;
+
             top: 0;
+
             left: 0;
 
+
+
             width: 100%;
+
             height: var(--header-height);
+
+
 
             z-index: 100;
 
+
+
             background: var(--background);
+
         }
+
+
+
 
 
         .project-layout {
+
             position: fixed;
 
+
+
             top: var(--header-height);
+
             left: 0;
 
+
+
             width: 100%;
+
             height: calc(100vh - var(--header-height));
+
         }
 
 
+
+
+
         /* ==========================================
+
            SIDEBAR
+
         ========================================== */
 
+
+
         .project-sidebar {
+
             position: absolute;
 
+
+
             top: 0;
+
             left: 0;
 
+
+
             width: var(--sidebar-width);
+
             height: 100%;
+
+
 
             padding-left: var(--page-left);
 
+
+
             display: flex;
+
             flex-direction: column;
 
+
+
             background: var(--background);
+
         }
+
+
+
 
 
         .project-intro {
+
             flex: 1;
 
+
+
             display: flex;
+
             align-items: center;
 
+
+
             padding-right: 18px;
+
         }
+
+
+
 
 
         .project-intro p {
+
             margin: 0;
+
+
 
             width: 100%;
 
+
+
             font-size: 11px;
+
             line-height: 1.65;
+
             font-weight: 400;
+
         }
+
+
+
 
 
         /* ==========================================
+
            ÁREA ROLÁVEL
+
         ========================================== */
 
+
+
         .project-scroll {
+
             position: absolute;
 
+
+
             top: 0;
+
             left: var(--sidebar-width);
+
             right: 0;
+
             bottom: 0;
 
+
+
             overflow-y: auto;
+
             overflow-x: hidden;
 
+
+
             padding-right: var(--page-right);
+
             padding-bottom: 30px;
 
+
+
             scrollbar-width: thin;
+
             scrollbar-color: #999 transparent;
+
         }
+
+
+
 
 
         .project-scroll::-webkit-scrollbar {
+
             width: 8px;
+
         }
+
+
+
 
 
         .project-scroll::-webkit-scrollbar-track {
+
             background: transparent;
+
         }
+
+
+
 
 
         .project-scroll::-webkit-scrollbar-thumb {
+
             background: #999;
+
             border-radius: 10px;
+
         }
+
+
+
 
 
         .project-scroll::-webkit-scrollbar-thumb:hover {
+
             background: #777;
+
         }
 
 
+
+
+
         /* ==========================================
+
            GALERIA
+
         ========================================== */
+
+
 
         .project-gallery {
+
             width: 100%;
 
+
+
             display: flex;
+
             flex-direction: column;
+
         }
+
+
+
 
 
         /* ==========================================
+
            CAMPANHAS
+
         ========================================== */
 
+
+
         .campaign {
+
             width: 100%;
 
+
+
             margin: 0 0 var(--campaign-gap);
+
             padding: 0 0 var(--campaign-gap);
 
+
+
             border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+
         }
+
+
+
 
 
         .campaign:last-child {
+
             margin-bottom: 0;
+
             padding-bottom: 0;
+
         }
+
+
+
 
 
         .campaign-final {
+
             margin-bottom: 4px;
+
             padding-bottom: 14px;
+
         }
 
 
+
+
+
         /* ==========================================
+
            CABEÇALHO DA CAMPANHA
+
         ========================================== */
 
+
+
         .campaign-header {
+
             width: 100%;
 
+
+
             display: flex;
+
             flex-direction: column;
+
+
 
             gap: 4px;
 
+
+
             margin: 0 0 14px;
+
         }
+
+
+
 
 
         .campaign-title {
+
             margin: 0;
 
+
+
             font-size: 12px;
+
             line-height: 1.2;
+
             font-weight: 500;
+
         }
+
+
+
 
 
         .campaign-description {
+
             margin: 0;
+
+
 
             max-width: none;
 
+
+
             font-size: 11px;
+
             line-height: 1.45;
+
             font-weight: 400;
+
         }
+
+
+
 
 
         .campaign-rock .campaign-description {
+
             width: 100%;
+
             max-width: none;
+
             white-space: normal;
+
         }
 
 
+
+
+
         /* ==========================================
+
            CONTEÚDO DA CAMPANHA
+
         ========================================== */
+
+
 
         .campaign-content {
+
             width: 100%;
 
+
+
             display: flex;
+
             flex-direction: column;
 
+
+
             gap: 18px;
+
         }
+
+
+
 
 
         /* ==========================================
+
            PLAYERS
+
         ========================================== */
 
+
+
         .radio-list {
+
             width: 100%;
 
+
+
             display: flex;
+
             flex-direction: row;
+
             align-items: flex-start;
 
+
+
             gap: 18px;
+
         }
+
+
+
 
 
         .radio-item {
+
             flex: 1 1 0;
+
+
 
             min-width: 0;
 
+
+
             display: flex;
+
             flex-direction: column;
 
+
+
             gap: 6px;
+
         }
+
+
+
 
 
         .radio-label {
+
             margin: 0;
 
+
+
             font-size: 11px;
+
             line-height: 1.2;
+
             font-weight: 500;
+
         }
+
+
+
 
 
         .audio-player {
+
             width: 100%;
+
             min-height: 58px;
+
+
 
             box-sizing: border-box;
 
+
+
             border: 1px solid rgba(0, 0, 0, 0.22);
+
             border-radius: var(--media-radius);
+
+
 
             padding: 0 16px;
 
+
+
             display: flex;
+
             align-items: center;
+
+
 
             gap: 14px;
 
+
+
             background: var(--background);
+
         }
+
+
+
 
 
         .audio-play {
+
             width: 28px;
+
             height: 28px;
+
+
 
             flex: 0 0 28px;
 
+
+
             border: 1px solid rgba(0, 0, 0, 0.5);
+
             border-radius: 50%;
+
+
 
             background: transparent;
 
+
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
+
 
             padding: 0;
 
+
+
             cursor: pointer;
+
         }
+
+
+
 
 
         .audio-play::before {
+
             content: "";
 
+
+
             width: 0;
+
             height: 0;
+
+
 
             margin-left: 2px;
 
+
+
             border-top: 5px solid transparent;
+
             border-bottom: 5px solid transparent;
+
             border-left: 7px solid #000;
+
         }
+
+
+
 
 
         .audio-play.playing::before {
+
             width: 8px;
+
             height: 10px;
+
+
 
             margin-left: 0;
 
+
+
             border: 0;
 
+
+
             background:
+
                 linear-gradient(
+
                     to right,
+
                     #000 0 3px,
+
                     transparent 3px 5px,
+
                     #000 5px 8px
+
                 );
+
         }
+
+
+
 
 
         .audio-progress {
+
             flex: 1;
+
+
 
             min-width: 0;
 
+
+
             appearance: none;
+
+
 
             height: 2px;
 
+
+
             border: 0;
+
+
 
             background: rgba(0, 0, 0, 0.18);
 
+
+
             cursor: pointer;
+
         }
+
+
+
 
 
         .audio-progress::-webkit-slider-thumb {
+
             appearance: none;
 
+
+
             width: 9px;
+
             height: 9px;
+
+
 
             border-radius: 50%;
 
+
+
             background: #000;
 
+
+
             cursor: pointer;
+
         }
+
+
+
 
 
         .audio-progress::-moz-range-thumb {
+
             width: 9px;
+
             height: 9px;
 
+
+
             border: 0;
+
             border-radius: 50%;
+
+
 
             background: #000;
 
+
+
             cursor: pointer;
+
         }
+
+
+
 
 
         .audio-time {
+
             width: 42px;
 
+
+
             font-size: 11px;
+
             line-height: 1;
+
+
 
             text-align: right;
 
+
+
             white-space: nowrap;
+
         }
 
 
+
+
+
         /* ==========================================
+
            VÍDEO 98FM
+
         ========================================== */
 
+
+
         .campaign-video {
+
             width: 100%;
+
+
 
             aspect-ratio: 16 / 9;
 
+
+
             overflow: hidden;
+
+
 
             border-radius: var(--media-radius);
 
+
+
             background: #000;
+
         }
+
+
+
 
 
         .campaign-video iframe {
+
             display: block;
 
+
+
             width: 100%;
+
             height: 100%;
 
+
+
             border: 0;
+
         }
+
+
+
 
 
         /* ==========================================
+
            HEADER
+
         ========================================== */
 
+
+
         .identity a {
+
             color: inherit;
+
             text-decoration: none;
+
         }
+
+
+
 
 
         nav a {
+
             text-decoration: none;
+
         }
 
 
+
+
+
         /* ==========================================
+
            CRÉDITOS
+
         ========================================== */
 
+
+
         .credits {
+
             width: 100%;
 
+
+
             margin: 0;
+
+
 
             padding: 12px 0 20px;
 
+
+
             font-size: 11px;
+
             line-height: 1.65;
+
             font-weight: 400;
+
         }
+
+
+
 
 
         .credits p {
+
             margin: 0;
+
         }
+
+
+
 
 
         /* ==========================================
+
            MOBILE
+
         ========================================== */
+
+
 
         @media (max-width: 700px) {
 
+
+
             :root {
+
                 --header-height: 104px;
+
+
 
                 --sidebar-width: 100%;
 
+
+
                 --page-left: 16px;
+
                 --page-right: 16px;
 
+
+
                 --gallery-gap: 10px;
+
                 --campaign-gap: 42px;
+
             }
+
+
+
 
 
             html,
+
             body {
+
                 overflow: auto;
+
             }
+
+
+
 
 
             header {
+
                 position: relative;
+
                 height: auto;
+
             }
+
+
+
 
 
             .project-layout {
+
                 position: relative;
+
+
 
                 top: auto;
 
+
+
                 height: auto;
+
+               padding-top: 0;
+
             }
+
+
+
 
 
             .project-sidebar {
+
                 position: relative;
 
+
+
                 width: 100%;
+
                 height: auto;
 
+
+
                 padding: 16px;
+
             }
+
+
+
 
 
             .project-intro {
+
                 padding: 0;
+
             }
+
+
+
 
 
             .project-intro p {
+
                 font-size: 12px;
+
             }
+
+
+
 
 
             .project-scroll {
+
                 position: relative;
 
+
+
                 top: auto;
+
                 left: auto;
+
                 right: auto;
+
                 bottom: auto;
 
+
+
                 width: 100%;
+
+
 
                 overflow: visible;
 
+
+
                 padding: 0 16px 30px;
+
             }
+
+
+
 
 
             .campaign-header {
+
                 gap: 4px;
+
                 margin-bottom: 10px;
+
             }
+
+
+
 
 
             .campaign-title {
+
                 font-size: 12px;
+
             }
+
+
+
 
 
             .campaign-description {
+
                 font-size: 12px;
+
                 line-height: 1.5;
+
             }
+
+
+
 
 
             .radio-list {
+
                 width: 100%;
+
+
 
                 flex-direction: column;
 
+
+
                 gap: 10px;
+
             }
+
+
+
 
 
             .radio-item {
+
                 width: 100%;
+
             }
+
+
+
 
 
             .campaign-video {
+
                 width: 100%;
+
             }
+
+
+
 
 
             .credits {
+
                 font-size: 12px;
+
             }
+
+
 
         }
 
+
+
     </style>
 
+
+
 </head>
+
+
+
 
 
 <body>
 
 
+
+
+
     <!-- ==========================================
+
          HEADER
+
     ========================================== -->
+
+
 
     <header>
 
+
+
         <div class="topbar">
+
+
 
             <div class="identity">
 
+
+
                 <a href="../index.html">
+
                     Luiz Destri
+
                 </a>
 
-                <span>
-                    Associate Creative Director
-                </span>
+
 
                 <span>
-                    Copywriter
+
+                    Associate Creative Director
+
                 </span>
+
+
+
+                <span>
+
+                    Copywriter
+
+                </span>
+
+
 
             </div>
+
+
+
 
 
             <nav>
 
+
+
                 <a
+
                     class="active"
+
                     href="../index.html"
+
                 >
+
                     Selected Work
+
                 </a>
 
+
+
                 <a href="../10-about/">
+
                     About
+
                 </a>
+
+
 
             </nav>
 
+
+
         </div>
+
+
 
     </header>
 
 
+
+
+
     <!-- ==========================================
+
          PROJETO
+
     ========================================== -->
+
+
 
     <main class="project-layout">
 
 
+
+
+
         <!-- ==========================================
+
              SIDEBAR
+
         ========================================== -->
+
+
 
         <aside class="project-sidebar">
 
+
+
             <section class="project-intro">
 
+
+
                 <p>
+
                     Áudio que brinca com cultura.<br>
+
                     Que usa repertório.<br>
+
                     Que mexe com comportamento.
+
                 </p>
 
+
+
             </section>
+
+
 
         </aside>
 
 
+
+
+
         <!-- ==========================================
+
              GALERIA
+
         ========================================== -->
 
+
+
         <section class="project-scroll">
+
+
 
             <div class="project-gallery">
 
 
+
+
+
                 <!-- ======================================
+
                      01 — MUNDO LIVRE FM / NOVEMBRO AZUL
+
                 ======================================= -->
+
+
 
                 <section class="campaign">
 
+
+
                     <div class="campaign-header">
 
+
+
                         <h2 class="campaign-title">
+
                             MUNDO LIVRE FM — NOVEMBRO AZUL
+
                         </h2>
 
+
+
                         <p class="campaign-description">
+
                             Dedos rápidos: a habilidade que os roqueiros valorizam utilizada em favor de uma campanha de conscientização.
+
                         </p>
+
+
 
                     </div>
 
 
+
+
+
                     <div class="campaign-content">
 
+
+
                         <div class="radio-list">
+
+
+
 
 
                             <!-- VAN HALEN -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Van Halen
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Van Halen"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Van Halen"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="01-MundoLivreFM-NovembroAzul/01-MundoLivreFM-NovembroAzul-VanHalen.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
 
+
+
                             </div>
+
+
+
 
 
                             <!-- RUSH -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Rush
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Rush"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Rush"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="01-MundoLivreFM-NovembroAzul/02-MundoLivreFM-NovembroAzul-Rush.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
 
+
+
                             </div>
+
+
+
 
 
                             <!-- DREAM THEATER -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Dream Theater
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Dream Theater"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Dream Theater"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="01-MundoLivreFM-NovembroAzul/03-MundoLivreFM-NovembroAzul-DreamTheater.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
+
+
 
                             </div>
 
 
+
+
+
                         </div>
 
+
+
                     </div>
+
+
 
                 </section>
 
 
+
+
+
                 <!-- ======================================
+
                      02 — LUMEN FM / NONSENSE
+
                 ======================================= -->
+
+
 
                 <section class="campaign">
 
+
+
                     <div class="campaign-header">
 
+
+
                         <h2 class="campaign-title">
+
                             LUMEN FM — NONSENSE
+
                         </h2>
 
+
+
                         <p class="campaign-description">
+
                             Letra&amp;música. Música&amp;letra. Uma combinação inseparável.
+
                         </p>
+
+
 
                     </div>
 
 
+
+
+
                     <div class="campaign-content">
 
+
+
                         <div class="radio-list">
+
+
+
 
 
                             <!-- BEN JOR -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Ben Jor
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Ben Jor"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Ben Jor"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="02-LumenFM-Nonsense/01-LumenFM-Nonsense-BenJor.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
 
+
+
                             </div>
+
+
+
 
 
                             <!-- CAETANO -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Caetano
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Caetano"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Caetano"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="02-LumenFM-Nonsense/02-LumenFM-Nonsense-Caetano.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
 
+
+
                             </div>
+
+
+
 
 
                             <!-- GIL -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Gil
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Gil"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Gil"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="02-LumenFM-Nonsense/03-LumenFM-Nonsense-Gil.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
+
+
 
                             </div>
 
 
+
+
+
                         </div>
 
+
+
                     </div>
+
+
 
                 </section>
 
 
+
+
+
                 <!-- ======================================
+
                      03 — LUMEN FM / DIA DO ROCK
+
                 ======================================= -->
+
+
 
                 <section class="campaign campaign-rock">
 
+
+
                     <div class="campaign-header">
 
+
+
                         <h2 class="campaign-title">
+
                             LUMEN FM — DIA DO ROCK
+
                         </h2>
 
+
+
                         <p class="campaign-description">
+
                             No Dia Internacional do Rock, a rádio menos rock and roll de Curitiba lembrou os headbangers de plantão que até os medalhões do gênero não são sempre assim, “tãããããooo rock…”
+
                         </p>
+
+
 
                     </div>
 
 
+
+
+
                     <div class="campaign-content">
+
+
 
                         <div class="radio-list">
 
 
+
+
+
                             <!-- RAMONES -->
+
+
 
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Ramones
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Ramones"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Ramones"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="03-LumenFM-Dia-do-Rock/01-LumenFM-Dia-do-Rock-Ramones.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
 
+
+
                             </div>
+
+
+
 
 
                             <!-- LED -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Led
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Led"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Led"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="03-LumenFM-Dia-do-Rock/02-LumenFM-Dia-do-Rock-Led.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
 
+
+
                             </div>
+
+
+
 
 
                             <!-- BEATLES -->
 
+
+
                             <div class="radio-item">
 
+
+
                                 <div class="radio-label">
+
                                     Beatles
+
                                 </div>
+
+
+
 
 
                                 <div class="audio-player">
 
+
+
                                     <button
+
                                         class="audio-play"
+
                                         type="button"
+
                                         aria-label="Reproduzir Beatles"
+
                                     ></button>
 
 
+
+
+
                                     <input
+
                                         class="audio-progress"
+
                                         type="range"
+
                                         min="0"
+
                                         max="100"
+
                                         value="0"
+
                                         step="0.1"
+
                                         aria-label="Progresso do áudio Beatles"
+
                                     >
 
 
+
+
+
                                     <span class="audio-time">
+
                                         0:00
+
                                     </span>
+
+
 
                                 </div>
 
 
+
+
+
                                 <audio
+
                                     src="03-LumenFM-Dia-do-Rock/03-LumenFM-Dia-do-Rock-Beatles.mp3"
+
                                     preload="metadata"
+
                                 ></audio>
+
+
 
                             </div>
 
 
+
+
+
                         </div>
 
+
+
                     </div>
+
+
 
                 </section>
 
 
+
+
+
                 <!-- ======================================
+
                      04 — 98FM / NOVEMBRO AZUL
+
                 ======================================= -->
+
+
 
                 <section class="campaign campaign-final">
 
+
+
                     <div class="campaign-header">
 
+
+
                         <h2 class="campaign-title">
+
                             98FM — NOVEMBRO AZUL
+
                         </h2>
 
+
+
                         <p class="campaign-description">
+
                             Exame de próstata: só de ouvir falar o nome, o pessoal já se apavora. Um spot que depois virou informe de saúde na TV.
+
                         </p>
 
+
+
                     </div>
+
+
+
 
 
                     <div class="campaign-content">
 
+
+
                         <div class="campaign-video">
 
+
+
                             <iframe
+
                                 src="https://player.vimeo.com/video/1230351037"
+
                                 allow="autoplay; fullscreen; picture-in-picture"
+
                                 allowfullscreen
+
                             ></iframe>
+
+
 
                         </div>
 
+
+
                     </div>
 
+
+
                 </section>
+
+
+
 
 
                 <!-- ======================================
+
                      CRÉDITOS
+
                 ======================================= -->
+
+
 
                 <section class="credits">
 
-                    <p>
-                        Associate Creative Director / Copywriter
-                    </p>
+
 
                     <p>
-                        Clientes variados
+
+                        Associate Creative Director / Copywriter
+
                     </p>
+
+
+
+                    <p>
+
+                        Clientes variados
+
+                    </p>
+
+
 
                 </section>
+
+
+
 
 
             </div>
 
+
+
         </section>
+
+
 
     </main>
 
 
+
+
+
     <!-- ==========================================
+
          ÁUDIO
+
     ========================================== -->
+
+
 
     <script>
 
+
+
         const audioItems =
+
             document.querySelectorAll(".radio-item");
+
+
+
 
 
         function formatTime(seconds) {
 
+
+
             if (!isFinite(seconds)) {
+
                 return "0:00";
+
             }
 
 
+
+
+
             const minutes =
+
                 Math.floor(seconds / 60);
 
 
+
+
+
             const remainingSeconds =
+
                 Math.floor(seconds % 60)
+
                     .toString()
+
                     .padStart(2, "0");
 
 
+
+
+
             return `${minutes}:${remainingSeconds}`;
+
         }
+
+
+
 
 
         audioItems.forEach(item => {
 
+
+
             const audio =
+
                 item.querySelector("audio");
 
 
+
+
+
             const playButton =
+
                 item.querySelector(".audio-play");
 
 
+
+
+
             const progress =
+
                 item.querySelector(".audio-progress");
 
 
+
+
+
             const timeDisplay =
+
                 item.querySelector(".audio-time");
 
 
+
+
+
             audio.addEventListener(
+
                 "loadedmetadata",
+
                 () => {
 
+
+
                     timeDisplay.textContent =
+
                         formatTime(audio.duration);
 
+
+
                 }
+
             );
 
 
+
+
+
             audio.addEventListener(
+
                 "timeupdate",
+
                 () => {
 
+
+
                     if (!audio.duration) {
+
                         return;
+
                     }
 
 
+
+
+
                     progress.value =
+
                         (audio.currentTime /
+
                         audio.duration) * 100;
 
 
+
+
+
                     timeDisplay.textContent =
+
                         formatTime(audio.currentTime);
 
+
+
                 }
+
             );
 
 
+
+
+
             playButton.addEventListener(
+
                 "click",
+
                 async () => {
 
+
+
                     document
+
                         .querySelectorAll(".radio-item audio")
+
                         .forEach(otherAudio => {
 
+
+
                             if (otherAudio !== audio) {
+
+
 
                                 otherAudio.pause();
 
 
+
+
+
                                 const otherItem =
+
                                     otherAudio.closest(
+
                                         ".radio-item"
+
                                     );
+
+
+
 
 
                                 if (otherItem) {
 
+
+
                                     const otherButton =
+
                                         otherItem.querySelector(
+
                                             ".audio-play"
+
                                         );
+
+
+
 
 
                                     if (otherButton) {
 
+
+
                                         otherButton.classList.remove(
+
                                             "playing"
+
                                         );
+
+
 
                                     }
 
+
+
                                 }
 
+
+
                             }
+
+
 
                         });
 
 
+
+
+
                     if (audio.paused) {
 
+
+
                         try {
+
+
 
                             await audio.play();
 
 
+
+
+
                             playButton.classList.add(
+
                                 "playing"
+
                             );
+
+
 
                         } catch (error) {
 
+
+
                             playButton.classList.remove(
+
                                 "playing"
+
                             );
+
+
+
 
 
                             console.error(
+
                                 "Não foi possível reproduzir o áudio:",
+
                                 error
+
                             );
+
+
 
                         }
 
+
+
                     } else {
+
+
 
                         audio.pause();
 
 
+
+
+
                         playButton.classList.remove(
+
                             "playing"
+
                         );
+
+
 
                     }
 
+
+
                 }
+
             );
 
 
+
+
+
             audio.addEventListener(
+
                 "pause",
+
                 () => {
+
+
 
                     if (!audio.ended) {
 
+
+
                         playButton.classList.remove(
+
                             "playing"
+
                         );
+
+
 
                     }
 
+
+
                 }
+
             );
 
 
+
+
+
             audio.addEventListener(
+
                 "ended",
+
                 () => {
 
+
+
                     playButton.classList.remove(
+
                         "playing"
+
                     );
+
+
+
 
 
                     progress.value = 0;
 
 
+
+
+
                     timeDisplay.textContent =
+
                         formatTime(audio.duration);
 
+
+
                 }
+
             );
+
+
+
 
 
             progress.addEventListener(
+
                 "input",
+
                 () => {
 
+
+
                     if (!audio.duration) {
+
                         return;
+
                     }
 
 
+
+
+
                     audio.currentTime =
+
                         (progress.value / 100) *
+
                         audio.duration;
 
+
+
                 }
+
             );
 
+
+
         });
+
+
 
     </script>
 
 
+
+
+
 </body>
+
+
 
 </html>
