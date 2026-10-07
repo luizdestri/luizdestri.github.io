@@ -1,1078 +1,2155 @@
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
 }
+
+
+
 
 
 html{
+
     scroll-behavior:smooth;
+
 }
+
+
+
 
 
 :root{
 
+
+
     --page-padding:24px;
+
+
 
     --line:#111;
 
+
+
     --background:#f7f6f2;
+
+
 
     --sidebar-width:320px;
 
+
+
     --column-gap:24px;
+
+
 
     --media-gap:12px;
 
+
+
     --header-space:83px;
 
+
+
 }
+
+
+
 
 
 body{
 
+
+
     font-family:'Inter', sans-serif;
+
+
 
     background:var(--background);
 
+
+
     color:#111;
+
+
 
     -webkit-font-smoothing:antialiased;
 
+
+
 }
+
+
+
 
 
 a{
 
+
+
     color:inherit;
+
+
 
     text-decoration:none;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    HEADER
+
 ========================================== */
+
+
 
 header{
 
+
+
     position:fixed;
+
+
 
     top:0;
 
+
+
     left:0;
+
+
 
     width:100%;
 
+
+
     z-index:1000;
+
+
 
     background:var(--background);
 
+
+
     padding:
+
         26px
+
         var(--page-padding)
+
         14px;
 
+
+
 }
+
+
+
 
 
 .topbar{
 
+
+
     width:100%;
+
+
 
     display:flex;
 
+
+
     justify-content:space-between;
+
+
 
     align-items:center;
 
+
+
     border-top:1px solid var(--line);
+
+
 
     border-bottom:1px solid var(--line);
 
+
+
     padding:14px 0;
 
+
+
 }
+
+
+
 
 
 .identity{
 
+
+
     display:flex;
+
+
 
     align-items:center;
 
+
+
     gap:24px;
+
+
 
     font-size:13px;
 
+
+
     font-weight:500;
+
+
 
     line-height:1;
 
+
+
 }
+
+
+
 
 
 nav{
 
+
+
     display:flex;
+
+
 
     align-items:center;
 
+
+
     gap:22px;
 
+
+
 }
+
+
+
 
 
 nav a{
 
+
+
     font-size:13px;
+
+
 
     line-height:1;
 
+
+
     color:#999;
+
+
 
     transition:.25s;
 
+
+
 }
+
+
+
 
 
 nav a.active{
 
+
+
     color:#111;
 
+
+
 }
+
+
+
 
 
 nav a:hover{
 
+
+
     color:#111;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    HOME
+
 ========================================== */
+
+
 
 main{
 
+
+
     width:calc(100% - (var(--page-padding) * 2));
+
+
 
     margin:0 auto 40px;
 
+
+
     padding-top:var(--header-space);
 
+
+
 }
+
+
+
 
 
 .grid{
 
+
+
     display:grid;
+
+
 
     grid-template-columns:repeat(3, 1fr);
 
+
+
     gap:4px;
 
+
+
 }
+
+
+
 
 
 .project{
 
+
+
     overflow:hidden;
 
+
+
 }
+
+
+
 
 
 .thumb{
 
+
+
     width:100%;
+
+
 
     display:block;
 
+
+
     aspect-ratio:16 / 9;
+
+
 
     object-fit:cover;
 
+
+
     background:#ddd;
+
+
 
     border-radius:6px;
 
+
+
     transition:.45s cubic-bezier(.2,.8,.2,1);
 
+
+
 }
+
+
+
 
 
 .project:hover .thumb{
 
+
+
     transform:scale(.99);
+
+
 
 }
 
 
+
+
+
 /* ==========================================
+
    PROJECT PAGE
+
 ========================================== */
+
+
 
 .project-page{
 
+
+
     width:calc(100% - (var(--page-padding) * 2));
+
+
 
     margin:18px auto 60px;
 
+
+
     display:grid;
+
+
 
     grid-template-columns:
 
+
+
         var(--sidebar-width)
+
+
 
         minmax(0, 1fr);
 
+
+
     column-gap:var(--column-gap);
+
+
 
     align-items:start;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    LEFT SIDEBAR
+
 ========================================== */
+
+
 
 .project-sidebar{
 
+
+
     position:sticky;
+
+
 
     top:24px;
 
+
+
     align-self:start;
+
+
 
     font-size:12px;
 
+
+
     line-height:1.5;
+
+
 
     font-weight:400;
 
+
+
 }
+
+
+
 
 
 .project-sidebar p{
 
+
+
     margin:0;
+
+
 
 }
 
 
+
+
+
 /* ==========================================
+
    PROJECT CONTENT
+
 ========================================== */
+
+
 
 .project-content{
 
+
+
     width:100%;
+
+
 
     display:flex;
 
+
+
     flex-direction:column;
+
+
 
     gap:var(--media-gap);
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    HERO
+
 ========================================== */
+
+
 
 .hero{
 
+
+
     width:100%;
 
+
+
 }
+
+
+
 
 
 .hero img{
 
+
+
     display:block;
 
+
+
     width:100%;
+
+
 
     height:auto;
 
+
+
     border-radius:6px;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    VIDEO
+
 ========================================== */
+
+
 
 .video{
 
+
+
     width:100%;
+
+
 
     aspect-ratio:16 / 9;
 
+
+
 }
+
+
+
 
 
 .video iframe{
 
+
+
     display:block;
 
+
+
     width:100%;
+
+
 
     height:100%;
 
+
+
     border:0;
+
+
 
     border-radius:6px;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    BOARDS
+
 ========================================== */
+
+
 
 .boards{
 
+
+
     width:100%;
+
+
 
     display:flex;
 
+
+
     flex-direction:column;
+
+
 
     gap:var(--media-gap);
 
+
+
 }
+
+
+
 
 
 .boards img{
 
+
+
     display:block;
+
+
 
     width:100%;
 
+
+
     height:auto;
+
+
 
     border-radius:6px;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    CREDITS
+
 ========================================== */
+
+
 
 .credits{
 
+
+
     margin-top:12px;
+
+
 
     font-size:11px;
 
+
+
     line-height:1.55;
+
+
 
     font-weight:400;
 
+
+
 }
+
+
+
 
 
 .credits p{
 
+
+
     margin:0;
+
+
 
 }
 
 
+
+
+
 /* ==========================================
+
    ABOUT
+
 ========================================== */
+
+
+
 
 
 /* ==========================================
+
    ABOUT — PAGE
+
 ========================================== */
+
+
 
 .about-page{
 
+
+
     margin-top:18px;
+
+
 
     margin-bottom:70px;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — INTRO
+
 ========================================== */
+
+
 
 .about-intro{
 
+
+
     display:grid;
+
+
 
     grid-template-columns:
 
+
+
         minmax(0, 1fr)
+
+
 
         26%;
 
+
+
     gap:clamp(40px, 6vw, 90px);
+
+
 
     align-items:start;
 
+
+
 }
+
+
+
 
 
 .about-bio{
 
+
+
     max-width:760px;
+
+
 
     font-size:14px;
 
+
+
     line-height:1.4;
 
+
+
 }
+
+
+
 
 
 .about-bio p{
 
+
+
     margin:0;
 
+
+
 }
+
+
+
 
 
 .about-greeting{
 
+
+
     font-size:19px;
+
+
 
     line-height:1.3;
 
+
+
 }
+
+
+
 
 
 .about-greeting p + p{
 
+
+
     margin-top:5px;
 
+
+
 }
+
+
+
 
 
 .about-greeting strong{
 
+
+
     font-weight:500;
 
+
+
 }
+
+
+
 
 
 .about-personal{
 
+
+
     margin-top:22px;
 
+
+
 }
+
+
+
 
 
 .about-personal p + p{
 
+
+
     margin-top:14px;
 
+
+
 }
+
+
+
 
 
 .about-story{
 
+
+
     margin-top:18px;
+
+
 
     max-width:720px;
 
+
+
 }
+
+
+
 
 
 .about-story p + p{
 
+
+
     margin-top:10px;
 
+
+
 }
+
+
+
 
 
 .about-emphasis{
 
+
+
     font-size:17px;
+
+
 
     font-weight:500;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — PHOTO
+
 ========================================== */
+
+
 
 .about-photo{
 
+
+
     width:100%;
 
+
+
 }
+
+
+
 
 
 .about-photo img{
 
+
+
     display:block;
+
+
 
     width:100%;
 
+
+
     height:auto;
+
+
 
     border-radius:6px;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — INFORMATION
+
 ========================================== */
+
+
 
 .about-info{
 
+
+
     margin-top:70px;
 
+
+
 }
+
+
+
 
 
 .about-info-row{
 
+
+
     display:grid;
+
+
 
     grid-template-columns:
 
+
+
         31%
+
+
 
         38%
 
+
+
         31%;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — HORIZONTAL LINES
+
 ========================================== */
+
+
 
 .about-info-top{
 
+
+
     border-top:1px solid #d5d3ce;
+
+
 
     border-bottom:1px solid #d5d3ce;
 
+
+
 }
+
+
+
 
 
 .about-info-bottom{
 
+
+
     border-bottom:1px solid #d5d3ce;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — COLUMNS
+
 ========================================== */
 
+
+
 .about-block,
+
 .about-detail,
+
 .about-contact{
+
+
 
     padding-top:20px;
 
+
+
     padding-bottom:55px;
 
+
+
 }
+
+
+
 
 
 .about-block{
 
+
+
     padding-left:24px;
+
+
 
     padding-right:24px;
 
+
+
     font-size:13px;
+
+
 
     line-height:1.65;
 
+
+
 }
+
+
+
 
 
 .about-block:first-child{
 
+
+
     padding-left:0;
 
+
+
 }
+
+
+
 
 
 .about-block:last-child{
 
+
+
     padding-right:0;
 
+
+
 }
+
+
+
 
 
 .about-detail,
+
 .about-contact{
+
+
 
     padding-left:24px;
 
+
+
     padding-right:24px;
+
+
 
     padding-top:20px;
 
+
+
     padding-bottom:35px;
+
+
 
     font-size:13px;
 
+
+
     line-height:1.65;
 
+
+
 }
+
+
+
 
 
 .about-detail:first-child{
 
+
+
     padding-left:0;
+
+
 
 }
 
 
+
+
+
 .about-contact{
+
+
 
     padding-right:0;
 
+
+
 }
 
 
+
+
+
 /* ==========================================
+
    ABOUT — VERTICAL LINES
+
 ========================================== */
 
+
+
 .about-block + .about-block,
+
 .about-detail + .about-detail,
+
 .about-contact{
+
+
 
     border-left:1px solid #d5d3ce;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — TITLES
+
 ========================================== */
 
+
+
 .about-block h2,
+
 .about-detail h2,
+
 .about-contact h2{
+
+
 
     margin:0 0 18px;
 
+
+
     font-size:11px;
+
+
 
     line-height:1;
 
+
+
     font-weight:600;
+
+
 
     letter-spacing:.01em;
 
+
+
 }
+
+
+
 
 
 .about-block p,
+
 .about-detail p,
+
 .about-contact p{
+
+
 
     margin:0;
 
+
+
 }
+
+
+
 
 
 .about-block strong{
 
+
+
     font-weight:500;
 
+
+
 }
+
+
+
 
 
 .about-block em{
 
+
+
     font-size:10px;
+
+
 
     font-style:italic;
 
+
+
     font-weight:400;
+
+
 
     color:#777;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — CLIENTS
+
 ========================================== */
+
+
 
 .about-clients{
 
+
+
     font-size:16px;
+
+
 
     line-height:1.45;
 
+
+
 }
+
+
+
 
 
 .about-clients p{
 
+
+
     margin:0;
 
+
+
 }
+
+
+
 
 
 .about-clients span + span::before{
 
+
+
     content:" | ";
+
+
 
     color:#555;
 
+
+
 }
+
+
+
 
 
 .about-note{
 
+
+
     margin-top:8px !important;
+
+
 
     color:#999;
 
+
+
     font-size:12px;
 
+
+
 }
+
+
+
 
 
 /* ==========================================
+
    ABOUT — CONTACT
+
 ========================================== */
+
+
 
 .about-contact a{
 
+
+
     transition:.25s;
 
+
+
 }
+
+
+
 
 
 .about-contact a:hover{
 
+
+
     color:#999;
+
+
 
 }
 
 
+
+
+
 /* ==========================================
+
    RESPONSIVE
+
 ========================================== */
+
+
 
 @media(max-width:1100px){
 
+
+
     :root{
+
+
 
         --sidebar-width:240px;
 
+
+
         --column-gap:20px;
 
+
+
     }
+
+
+
 
 
     .grid{
 
+
+
         grid-template-columns:repeat(2, 1fr);
 
+
+
     }
+
+
+
 
 
     /* ABOUT */
 
+
+
     .about-intro{
+
+
 
         grid-template-columns:
 
+
+
             minmax(0, 1fr)
+
+
 
             30%;
 
+
+
         gap:40px;
 
+
+
     }
+
+
+
 
 
     .about-info-row{
 
+
+
         grid-template-columns:
+
+
 
             30%
 
+
+
             40%
+
+
 
             30%;
 
+
+
     }
 
+
+
 }
+
+
+
 
 
 @media(max-width:700px){
 
+
+
     :root{
+
+
 
         --page-padding:16px;
 
+
+
         --media-gap:8px;
+
+
 
         --header-space:94px;
 
+
+
     }
+
+
+
 
 
     header{
 
+
+
         padding-top:18px;
+
+
 
         padding-bottom:10px;
 
+
+
     }
+
+
+
 
 
     .topbar{
 
+
+
         flex-direction:column;
+
+
 
         align-items:flex-start;
 
+
+
         gap:14px;
 
+
+
     }
+
+
+
 
 
     .identity{
 
+
+
         flex-wrap:wrap;
+
+
 
         gap:14px;
 
+
+
         font-size:12px;
 
+
+
     }
+
+
+
 
 
     nav{
 
+
+
         font-size:12px;
 
+
+
     }
+
+
+
 
 
     .grid{
 
+
+
         grid-template-columns:1fr;
+
+
 
         gap:6px;
 
+
+
     }
+
+
+
 
 
     /* PROJECT PAGE */
 
+
+
     .project-page{
+
+
 
         display:flex;
 
+
+
         flex-direction:column;
+
+
 
         gap:24px;
 
+
+
         margin-top:14px;
 
+
+
     }
+
+
+
 
 
     .project-sidebar{
 
+
+
         position:static;
+
+
 
         width:100%;
 
+
+
         font-size:11px;
 
+
+
     }
+
+
+
 
 
     .project-content{
 
+
+
         width:100%;
 
+
+
     }
+
+
+
 
 
     /* ABOUT */
 
+
+
     .about-page{
+
+
 
         margin-top:14px;
 
+
+
         margin-bottom:50px;
 
+
+
     }
+
+
+
 
 
     .about-intro{
 
+
+
         display:flex;
+
+
 
         flex-direction:column;
 
+
+
         gap:32px;
 
+
+
     }
+
+
+
 
 
     .about-photo{
 
+
+
         order:-1;
 
-        width:100%;
+
+
+        width:72%;
+
+
 
     }
+
+
+
 
 
     .about-bio{
 
+
+
         max-width:none;
+
+
 
         font-size:14px;
 
+
+
         line-height:1.45;
 
+
+
     }
+
+
+
 
 
     .about-greeting{
 
+
+
         font-size:18px;
 
+
+
     }
+
+
+
 
 
     .about-personal{
 
+
+
         margin-top:22px;
 
+
+
     }
+
+
+
 
 
     .about-story{
 
+
+
         margin-top:18px;
 
+
+
     }
+
+
+
 
 
     .about-emphasis{
 
+
+
         font-size:17px;
 
+
+
     }
+
+
+
 
 
     .about-info{
 
+
+
         margin-top:55px;
 
+
+
     }
+
+
+
 
 
     .about-info-row{
 
+
+
         display:grid;
+
+
 
         grid-template-columns:1fr;
 
+
+
     }
+
+
+
 
 
     .about-info-top,
+
     .about-info-bottom{
+
+
 
         border-bottom:0;
 
+
+
     }
+
+
+
 
 
     .about-block,
+
     .about-detail,
+
     .about-contact{
+
+
 
         padding-left:0;
 
+
+
         padding-right:0;
+
+
 
         padding-top:20px;
 
+
+
         padding-bottom:30px;
+
+
 
         border-left:0;
 
+
+
         border-bottom:1px solid #d5d3ce;
 
+
+
     }
+
+
+
 
 
     /* Remove desktop vertical dividers on mobile */
 
+
+
     .about-block + .about-block,
+
     .about-detail + .about-detail,
+
     .about-contact{
+
+
 
         border-left:0;
 
+
+
     }
+
+
+
 
 
     .about-block:first-child,
+
     .about-detail:first-child{
+
+
 
         padding-left:0;
 
+
+
     }
+
+
+
 
 
     .about-block:last-child,
+
     .about-contact{
+
+
 
         padding-right:0;
 
+
+
     }
+
+
+
 
 
     .about-info-bottom{
 
+
+
         border-bottom:1px solid #d5d3ce;
 
+
+
     }
+
+
+
 
 
     .about-contact{
 
+
+
         border-bottom:0;
 
+
+
     }
+
+
+
 
 
     .about-clients{
 
+
+
         font-size:15px;
 
+
+
     }
+
+
 
 }
